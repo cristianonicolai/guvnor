@@ -18,22 +18,22 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:b='urn:import:com.github.gwtbootstrap.client.ui'>
+             xmlns:b='urn:import:org.gwtbootstrap3.client.ui'>
 
   <ui:with field="i18n"
            type="org.guvnor.asset.management.client.i18n.Constants"/>
 
   <g:HTMLPanel>
     <b:Well>
-      <b:Fieldset>
+      <b:FieldSet>
         <b:Legend>
           <ui:text from="{i18n.RequiresRework}"/>
         </b:Legend>
 
-        <b:ControlGroup ui:field="reviewCommentGroup">
-          <b:TextArea ui:field="reviewCommentBox" size="10"/>
-        </b:ControlGroup>
-      </b:Fieldset>
+        <b:FormGroup ui:field="reviewCommentGroup">
+          <b:TextArea ui:field="reviewCommentBox" styleName="col-md-10"/>
+        </b:FormGroup>
+      </b:FieldSet>
     </b:Well>
   </g:HTMLPanel>
 </ui:UiBinder>

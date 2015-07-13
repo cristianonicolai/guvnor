@@ -23,12 +23,8 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import com.github.gwtbootstrap.client.ui.ControlGroup;
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.ListBox;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
@@ -41,7 +37,6 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.editors.repository.RepositoryPreferences;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
@@ -49,6 +44,11 @@ import org.guvnor.structure.organizationalunit.OrganizationalUnitService;
 import org.guvnor.structure.repositories.Repository;
 import org.guvnor.structure.repositories.RepositoryAlreadyExistsException;
 import org.guvnor.structure.repositories.RepositoryService;
+import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
@@ -85,25 +85,25 @@ public class CreateRepositoryForm
     private PlaceManager placeManager;
 
     @UiField
-    ControlGroup organizationalUnitGroup;
+    FormGroup organizationalUnitGroup;
 
     @UiField
-    HelpInline organizationalUnitHelpInline;
+    HelpBlock organizationalUnitHelpBlock;
 
     @UiField
     ListBox organizationalUnitDropdown;
 
     @UiField
-    ControlGroup nameGroup;
+    FormGroup nameGroup;
 
     @UiField
     TextBox nameTextBox;
 
     @UiField
-    HelpInline nameHelpInline;
+    HelpBlock nameHelpBlock;
 
     @UiField
-    InlineHTML isOUMandatory;
+    SpanElement isOUMandatory;
 
     @UiField
     BaseModal popup;
@@ -121,12 +121,11 @@ public class CreateRepositoryForm
             isOUMandatory.removeFromParent();
         }
 
-        popup.setDynamicSafe( true );
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
             public void onKeyPress( final KeyPressEvent event ) {
-                nameGroup.setType( ControlGroupType.NONE );
-                nameHelpInline.setText( "" );
+                nameGroup.setValidationState( ValidationState.NONE );
+                nameHelpBlock.setText( "" );
             }
         } );
         //populate Organizational Units list box
@@ -175,17 +174,16 @@ public class CreateRepositoryForm
 
         final String organizationalUnit = organizationalUnitDropdown.getValue( organizationalUnitDropdown.getSelectedIndex() );
         if ( mandatoryOU && !availableOrganizationalUnits.containsKey( organizationalUnit ) ) {
-            organizationalUnitGroup.setType( ControlGroupType.ERROR );
-            organizationalUnitHelpInline.setText( CoreConstants.INSTANCE.OrganizationalUnitMandatory() );
+            organizationalUnitGroup.setValidationState( ValidationState.ERROR );
+            organizationalUnitHelpBlock.setText( CoreConstants.INSTANCE.OrganizationalUnitMandatory() );
             return;
         } else {
-            organizationalUnitGroup.setType( ControlGroupType.NONE );
+            organizationalUnitGroup.setValidationState( ValidationState.NONE );
         }
 
         if ( nameTextBox.getText() == null || nameTextBox.getText().trim().isEmpty() ) {
-            nameGroup.setType( ControlGroupType.ERROR );
-            nameHelpInline.setText( CoreConstants.INSTANCE.RepositoryNaneMandatory() );
-            return;
+            nameGroup.setValidationState( ValidationState.ERROR );
+            nameHelpBlock.setText( CoreConstants.INSTANCE.RepositoryNaneMandatory() );
         } else {
             repositoryService.call( new RemoteCallback<String>() {
                 @Override

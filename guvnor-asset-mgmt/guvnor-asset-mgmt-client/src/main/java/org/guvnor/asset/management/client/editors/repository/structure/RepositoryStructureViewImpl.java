@@ -18,7 +18,6 @@ package org.guvnor.asset.management.client.editors.repository.structure;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
-import com.github.gwtbootstrap.client.ui.FluidRow;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -32,6 +31,7 @@ import org.guvnor.asset.management.client.editors.repository.structure.release.R
 import org.guvnor.asset.management.model.RepositoryStructureModel;
 import org.guvnor.common.services.project.model.POM;
 import org.guvnor.common.services.project.model.Project;
+import org.gwtbootstrap3.client.ui.Row;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 
 @ApplicationScoped
@@ -50,13 +50,13 @@ public class RepositoryStructureViewImpl
     private static RepositoryStructureViewImplBinder uiBinder = GWT.create( RepositoryStructureViewImplBinder.class );
 
     @UiField
-    FluidRow dataViewContainer;
+    Row dataViewContainer;
 
     @UiField(provided = true)
     RepositoryStructureDataView dataView;
 
     @UiField
-    FluidRow modulesViewContainer;
+    Row modulesViewContainer;
 
     @UiField(provided = true)
     ProjectModulesView modulesView;

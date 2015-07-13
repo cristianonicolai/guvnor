@@ -18,14 +18,8 @@ package org.guvnor.structure.client.editors.repository.clone;
 
 import javax.enterprise.context.Dependent;
 
-import com.github.gwtbootstrap.client.ui.Button;
-import com.github.gwtbootstrap.client.ui.ControlGroup;
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.ListBox;
-import com.github.gwtbootstrap.client.ui.PasswordTextBox;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
@@ -36,6 +30,13 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.resources.i18n.CommonConstants;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.Input;
+import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 import org.uberfire.ext.widgets.common.client.common.popups.BaseModal;
 import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
@@ -55,6 +56,7 @@ public class CloneRepositoryViewImpl
 
     private static CloneRepositoryFormBinder uiBinder = GWT.create( CloneRepositoryFormBinder.class );
 
+
     @UiField
     Button clone;
 
@@ -62,40 +64,43 @@ public class CloneRepositoryViewImpl
     Button cancel;
 
     @UiField
-    ControlGroup organizationalUnitGroup;
+    FormGroup organizationalUnitGroup;
 
     @UiField
     ListBox organizationalUnitDropdown;
 
     @UiField
-    HelpInline organizationalUnitHelpInline;
+    HelpBlock organizationalUnitHelpInline;
 
     @UiField
-    ControlGroup nameGroup;
+    FormGroup nameGroup;
 
     @UiField
     TextBox nameTextBox;
 
     @UiField
-    HelpInline nameHelpInline;
+    HelpBlock nameHelpInline;
 
     @UiField
-    ControlGroup urlGroup;
+    FormGroup urlGroup;
 
     @UiField
     TextBox gitURLTextBox;
 
     @UiField
-    HelpInline urlHelpInline;
+    HelpBlock urlHelpInline;
 
     @UiField
     TextBox usernameTextBox;
 
     @UiField
-    PasswordTextBox passwordTextBox;
+    Input passwordTextBox;
 
     @UiField
-    InlineHTML isOUMandatory;
+    BaseModal popup;
+
+    @UiField
+    SpanElement isOUMandatory;
 
     @UiHandler("clone")
     public void onCloneClick( final ClickEvent e ) {
@@ -122,14 +127,14 @@ public class CloneRepositoryViewImpl
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
             public void onKeyPress( final KeyPressEvent event ) {
-                nameGroup.setType( ControlGroupType.NONE );
+                nameGroup.setValidationState( ValidationState.NONE );
                 nameHelpInline.setText( "" );
             }
         } );
         gitURLTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
             public void onKeyPress( final KeyPressEvent event ) {
-                urlGroup.setType( ControlGroupType.NONE );
+                urlGroup.setValidationState( ValidationState.NONE );
                 urlHelpInline.setText( "" );
             }
         } );
@@ -203,8 +208,8 @@ public class CloneRepositoryViewImpl
     }
 
     @Override
-    public void setUrlGroupType( final ControlGroupType type ) {
-        urlGroup.setType( type );
+    public void setUrlGroupType( final ValidationState state ) {
+        urlGroup.setValidationState( state );
     }
 
     @Override
@@ -213,8 +218,8 @@ public class CloneRepositoryViewImpl
     }
 
     @Override
-    public void setNameGroupType( final ControlGroupType type ) {
-        nameGroup.setType( type );
+    public void setNameGroupType( final ValidationState state ) {
+        nameGroup.setValidationState( state );
     }
 
     @Override
@@ -223,8 +228,8 @@ public class CloneRepositoryViewImpl
     }
 
     @Override
-    public void setOrganizationalUnitGroupType( final ControlGroupType type ) {
-        organizationalUnitGroup.setType( type );
+    public void setOrganizationalUnitGroupType( final ValidationState state ) {
+        organizationalUnitGroup.setValidationState( state );
     }
 
     @Override
@@ -264,7 +269,7 @@ public class CloneRepositoryViewImpl
 
     @Override
     public void setPopupCloseVisible( final boolean closeVisible ) {
-        setCloseVisible( closeVisible );
+        setClosable( closeVisible );
     }
 
     @Override

@@ -16,11 +16,6 @@
 
 package org.guvnor.organizationalunit.manager.client.editor.popups;
 
-import com.github.gwtbootstrap.client.ui.ControlGroup;
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.Icon;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -30,6 +25,11 @@ import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.organizationalunit.manager.client.editor.OrganizationalUnitManagerPresenter;
 import org.guvnor.organizationalunit.manager.client.resources.i18n.OrganizationalUnitManagerConstants;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
+import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.Icon;
+import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.uberfire.client.mvp.UberView;
 import org.uberfire.ext.widgets.common.client.common.popups.BaseModal;
@@ -52,13 +52,13 @@ public class EditOrganizationalUnitPopup extends BaseModal implements UberView<O
     TextBox ownerTextBox;
 
     @UiField
-    ControlGroup defaultGroupIdGroup;
+    FormGroup defaultGroupIdGroup;
 
     @UiField
     TextBox defaultGroupIdTextBox;
 
     @UiField
-    HelpInline defaultGroupIdHelpInline;
+    HelpBlock defaultGroupIdHelpInline;
 
     @UiField
     Icon groupIdHelpIcon;
@@ -101,17 +101,15 @@ public class EditOrganizationalUnitPopup extends BaseModal implements UberView<O
 
     private void onOKButtonClick() {
         if ( defaultGroupIdTextBox.getText() == null || defaultGroupIdTextBox.getText().trim().isEmpty() ) {
-            defaultGroupIdGroup.setType( ControlGroupType.ERROR );
+            defaultGroupIdGroup.setValidationState( ValidationState.ERROR );
             defaultGroupIdHelpInline.setText( OrganizationalUnitManagerConstants.INSTANCE.DefaultGroupIdIsMandatory() );
-            return;
         } else {
             presenter.checkValidGroupId( defaultGroupIdTextBox.getText(), new RemoteCallback<Boolean>() {
                 @Override
                 public void callback( Boolean valid ) {
                     if ( !valid ) {
-                        defaultGroupIdGroup.setType( ControlGroupType.ERROR );
+                        defaultGroupIdGroup.setValidationState( ValidationState.ERROR );
                         defaultGroupIdHelpInline.setText( OrganizationalUnitManagerConstants.INSTANCE.InvalidGroupId() );
-                        return;
                     } else {
                         presenter.saveOrganizationalUnit( nameTextBox.getText(),
                                 ownerTextBox.getText(),
@@ -129,7 +127,7 @@ public class EditOrganizationalUnitPopup extends BaseModal implements UberView<O
 
     @Override
     public void show() {
-        defaultGroupIdGroup.setType( ControlGroupType.NONE );
+        defaultGroupIdGroup.setValidationState( ValidationState.NONE );
         defaultGroupIdHelpInline.setText( "" );
 
         if ( organizationalUnit == null ) {
