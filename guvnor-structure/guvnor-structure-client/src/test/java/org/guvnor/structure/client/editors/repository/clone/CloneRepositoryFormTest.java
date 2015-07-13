@@ -19,7 +19,6 @@ package org.guvnor.structure.client.editors.repository.clone;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import org.guvnor.structure.client.editors.repository.RepositoryPreferences;
 import org.guvnor.structure.client.editors.repository.clone.answer.OuServiceAnswer;
 import org.guvnor.structure.client.editors.repository.clone.answer.RsCreateRepositoryAnswer;
@@ -30,6 +29,7 @@ import org.guvnor.structure.organizationalunit.OrganizationalUnitService;
 import org.guvnor.structure.repositories.Repository;
 import org.guvnor.structure.repositories.RepositoryAlreadyExistsException;
 import org.guvnor.structure.repositories.RepositoryService;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
@@ -296,7 +296,7 @@ public class CloneRepositoryFormTest {
         presenter = new CloneRepositoryPresenter( repositoryPreferences, view, repoServiceCaller, ouServiceCaller, placeManager );
         presenter.handleCloneClick();
 
-        verify( view ).setOrganizationalUnitGroupType( ControlGroupType.ERROR );
+        verify( view ).setOrganizationalUnitGroupType( ValidationState.ERROR );
         verify( view ).showOrganizationalUnitHelpMandatoryMessage();
         verifyRepoCloned( false );
     }
@@ -312,7 +312,7 @@ public class CloneRepositoryFormTest {
         presenter = new CloneRepositoryPresenter( repositoryPreferences, view, repoServiceCaller, ouServiceCaller, placeManager );
         presenter.handleCloneClick();
 
-        verify( view ).setUrlGroupType( ControlGroupType.ERROR );
+        verify( view ).setUrlGroupType( ValidationState.ERROR );
         verify( view ).showUrlHelpMandatoryMessage();
         verifyRepoCloned( false );
     }

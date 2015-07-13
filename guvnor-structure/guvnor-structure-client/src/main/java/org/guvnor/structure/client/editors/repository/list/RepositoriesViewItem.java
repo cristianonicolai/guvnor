@@ -18,8 +18,6 @@ package org.guvnor.structure.client.editors.repository.list;
 import java.util.Collection;
 import java.util.List;
 
-import com.github.gwtbootstrap.client.ui.Button;
-import com.github.gwtbootstrap.client.ui.ListBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -34,6 +32,8 @@ import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.repositories.PublicURI;
 import org.guvnor.structure.repositories.Repository;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.ListBox;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 
 public class RepositoriesViewItem extends Composite {

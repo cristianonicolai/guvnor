@@ -16,11 +16,6 @@
 
 package org.guvnor.m2repo.client.upload;
 
-import com.github.gwtbootstrap.client.ui.Button;
-import com.github.gwtbootstrap.client.ui.Form;
-import com.github.gwtbootstrap.client.ui.ModalFooter;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.WellForm;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -30,6 +25,11 @@ import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import org.guvnor.m2repo.client.resources.i18n.M2RepoEditorConstants;
 import org.guvnor.m2repo.model.HTMLFileManagerFields;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Form;
+import org.gwtbootstrap3.client.ui.ModalBody;
+import org.gwtbootstrap3.client.ui.ModalFooter;
+import org.gwtbootstrap3.client.ui.TextBox;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 import org.uberfire.ext.widgets.common.client.common.FileUpload;
 import org.uberfire.ext.widgets.common.client.common.FormStyleLayout;
@@ -40,7 +40,7 @@ import org.uberfire.mvp.Command;
 public class UploadFormViewImpl
         extends BaseModal implements UploadFormView {
 
-    private WellForm form;
+    private Form form;
 
     private final TextBox hiddenGroupIdField = new TextBox();
     private final TextBox hiddenArtifactIdField = new TextBox();
@@ -53,20 +53,24 @@ public class UploadFormViewImpl
     private FileUpload uploader;
 
     public UploadFormViewImpl() {
-        this.add( new ModalFooter( new Button( M2RepoEditorConstants.INSTANCE.Cancel() ) {{
-            addClickHandler( new ClickHandler() {
-                @Override
-                public void onClick( ClickEvent event ) {
-                    hide();
-                }
-            } );
-        }} ) );
         this.setTitle( M2RepoEditorConstants.INSTANCE.ArtifactUpload() );
-        this.add( doUploadForm() );
+        this.add( new ModalBody() {{
+            add( doUploadForm() );
+        }} );
+        this.add( new ModalFooter() {{
+            add( new Button( M2RepoEditorConstants.INSTANCE.Cancel() ) {{
+                addClickHandler( new ClickHandler() {
+                    @Override
+                    public void onClick( ClickEvent event ) {
+                        hide();
+                    }
+                } );
+            }} );
+        }} );
     }
 
-    private WellForm doUploadForm() {
-        form = new WellForm();
+    private Form doUploadForm() {
+        form = new Form();
         form.setAction( getWebContext() + "/maven2wb" );
         form.setEncoding( FormPanel.ENCODING_MULTIPART );
         form.setMethod( FormPanel.METHOD_POST );

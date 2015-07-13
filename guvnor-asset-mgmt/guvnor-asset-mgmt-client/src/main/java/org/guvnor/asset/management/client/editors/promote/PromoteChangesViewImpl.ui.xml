@@ -18,62 +18,56 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
-             xmlns:bootstrap='urn:import:com.github.gwtbootstrap.client.ui'>
+             xmlns:bootstrap='urn:import:org.gwtbootstrap3.client.ui'>
 
   <ui:with field="i18n"
            type="org.guvnor.asset.management.client.i18n.Constants"/>
-  
+
 
   <gwt:HTMLPanel>
-    <bootstrap:WellForm type="INLINE">
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="chooseRepositoryBox">
+    <bootstrap:Form type="INLINE">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="chooseRepositoryBox">
             <ui:text from="{i18n.Choose_Repository}"/>
-          </bootstrap:ControlLabel>
+          </bootstrap:FormLabel>
         </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
-          </bootstrap:Controls>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
         </bootstrap:Column>
-      </bootstrap:FluidRow>
+      </bootstrap:Row>
 
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="chooseSourceBranchBox">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="chooseSourceBranchBox">
             <ui:text from="{i18n.Choose_Source_Branch}"/>
-          </bootstrap:ControlLabel>
+          </bootstrap:FormLabel>
         </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:ListBox ui:field="chooseSourceBranchBox"/>
-          </bootstrap:Controls>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:ListBox ui:field="chooseSourceBranchBox"/>
         </bootstrap:Column>
-      </bootstrap:FluidRow>
-      
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="chooseTargetBranchBox">
-            <ui:text from="{i18n.Choose_Destination_Branch}"/>
-          </bootstrap:ControlLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:ListBox ui:field="chooseTargetBranchBox"/>
-          </bootstrap:Controls>
-        </bootstrap:Column>
-      </bootstrap:FluidRow>
-      
+      </bootstrap:Row>
 
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="chooseTargetBranchBox">
+            <ui:text from="{i18n.Choose_Destination_Branch}"/>
+          </bootstrap:FormLabel>
+        </bootstrap:Column>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:ListBox ui:field="chooseTargetBranchBox"/>
+        </bootstrap:Column>
+      </bootstrap:Row>
+
+
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
           <bootstrap:Button type="PRIMARY" ui:field='promoteButton'>
             <ui:text from="{i18n.Promote_Assets}"/>
           </bootstrap:Button>
         </bootstrap:Column>
-        
-      </bootstrap:FluidRow>
-    </bootstrap:WellForm>
+
+      </bootstrap:Row>
+    </bootstrap:Form>
   </gwt:HTMLPanel>
 </ui:UiBinder>

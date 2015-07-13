@@ -17,7 +17,8 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui"
+             xmlns:kie="urn:import:org.uberfire.ext.widgets.common.client.common.popups">
 
   <ui:with field="i18n" type="org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants"/>
   <ui:style>
@@ -27,69 +28,63 @@
   </ui:style>
 
   <g:HTMLPanel>
-    <b:Well>
-      <b:Fieldset>
-        <b:Legend>
-          <ui:text from="{i18n.RepoInformation}"/>
-          <small>
-            <ui:text from="{i18n.IsRequired}"/>
-          </small>
-        </b:Legend>
-        <b:ControlGroup ui:field="nameGroup">
-          <b:ControlLabel for="name">
-            <span class="{style.mandatory-field}">*</span>
-            <ui:text from="{i18n.RepoName}"/>
-          </b:ControlLabel>
-          <b:Controls>
-            <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="{i18n.RepoNameHolder}"/>
-            <b:HelpInline ui:field="nameHelpInline"/>
-          </b:Controls>
-        </b:ControlGroup>
-        <b:ControlGroup ui:field="organizationalUnitGroup">
-          <b:ControlLabel for="ou">
-            <g:InlineHTML ui:field="isOUMandatory" addStyleNames="{style.mandatory-field}">*</g:InlineHTML>
-            <ui:text from="{i18n.OrganizationalUnit}"/>
-          </b:ControlLabel>
-          <b:Controls>
-            <b:ListBox b:id="ou" ui:field="organizationalUnitDropdown"/>
-            <b:HelpInline ui:field="organizationalUnitHelpInline"/>
-          </b:Controls>
-        </b:ControlGroup>
-        <b:ControlGroup ui:field="urlGroup">
-          <b:ControlLabel for="url">
-            <span class="{style.mandatory-field}">*</span>
-            <ui:text from="{i18n.GitUrl}"/>
-          </b:ControlLabel>
-          <b:Controls>
-            <b:TextBox b:id="url" ui:field="gitURLTextBox" placeholder="{i18n.GitUrlHolder}"/>
-            <b:HelpInline ui:field="urlHelpInline"/>
-          </b:Controls>
-        </b:ControlGroup>
-        <b:ControlGroup>
-          <b:ControlLabel>
-            <ui:text from="{i18n.UserName}"/>
-          </b:ControlLabel>
-          <b:Controls>
-            <b:TextBox ui:field="usernameTextBox" placeholder="{i18n.UserNameHolder}"/>
-          </b:Controls>
-        </b:ControlGroup>
-        <b:ControlGroup>
-          <b:ControlLabel>
-            <ui:text from="{i18n.Password}"/>
-          </b:ControlLabel>
-          <b:Controls>
-            <b:PasswordTextBox ui:field="passwordTextBox" placeholder="{i18n.PasswordHolder}"/>
-          </b:Controls>
-        </b:ControlGroup>
-      </b:Fieldset>
-    </b:Well>
-    <b:ModalFooter>
-      <b:Button type="DEFAULT" ui:field="cancel">
-        <ui:text from="{i18n.Cancel}"/>
-      </b:Button>
-      <b:Button icon="CLOUD_DOWNLOAD" type="PRIMARY" ui:field="clone">
-        <ui:text from="{i18n.Clone}"/>
-      </b:Button>
-    </b:ModalFooter>
+    <kie:BaseModal ui:field="popup" title="{i18n.CloneRepository}" dataBackdrop="STATIC" dataKeyboard="true" fade="true">
+      <b:ModalBody>
+        <b:Well>
+          <b:FieldSet>
+            <b:Legend>
+              <ui:text from="{i18n.RepoInformation}"/>
+              <small>
+                <ui:text from="{i18n.IsRequired}"/>
+              </small>
+            </b:Legend>
+            <b:FormGroup ui:field="nameGroup">
+              <b:FormLabel for="name">
+                <span class="{style.mandatory-field}">*</span>
+                <ui:text from="{i18n.RepoName}"/>
+              </b:FormLabel>
+              <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="{i18n.RepoNameHolder}"/>
+              <b:HelpBlock ui:field="nameHelpInline"/>
+            </b:FormGroup>
+            <b:FormGroup ui:field="organizationalUnitGroup">
+              <b:FormLabel for="ou">
+                <span ui:field="isOUMandatory" class="{style.mandatory-field}">*</span>
+                <ui:text from="{i18n.OrganizationalUnit}"/>
+              </b:FormLabel>
+              <b:ListBox b:id="ou" ui:field="organizationalUnitDropdown"/>
+              <b:HelpBlock ui:field="organizationalUnitHelpInline"/>
+            </b:FormGroup>
+            <b:FormGroup ui:field="urlGroup">
+              <b:FormLabel for="url">
+                <span class="{style.mandatory-field}">*</span>
+                <ui:text from="{i18n.GitUrl}"/>
+              </b:FormLabel>
+              <b:TextBox b:id="url" ui:field="gitURLTextBox" placeholder="{i18n.GitUrlHolder}"/>
+              <b:HelpBlock ui:field="urlHelpInline"/>
+            </b:FormGroup>
+            <b:FormGroup>
+              <b:FormLabel>
+                <ui:text from="{i18n.UserName}"/>
+              </b:FormLabel>
+              <b:TextBox ui:field="usernameTextBox" placeholder="{i18n.UserNameHolder}"/>
+            </b:FormGroup>
+            <b:FormGroup>
+              <b:FormLabel>
+                <ui:text from="{i18n.Password}"/>
+              </b:FormLabel>
+              <b:Input ui:field="passwordTextBox" type="PASSWORD" placeholder="{i18n.PasswordHolder}"/>
+            </b:FormGroup>
+          </b:FieldSet>
+        </b:Well>
+      </b:ModalBody>
+      <b:ModalFooter>
+        <b:Button type="DEFAULT" ui:field="cancel">
+          <ui:text from="{i18n.Cancel}"/>
+        </b:Button>
+        <b:Button icon="CLOUD_DOWNLOAD" type="PRIMARY" ui:field="clone">
+          <ui:text from="{i18n.Clone}"/>
+        </b:Button>
+      </b:ModalFooter>
+    </kie:BaseModal>
   </g:HTMLPanel>
 </ui:UiBinder> 
