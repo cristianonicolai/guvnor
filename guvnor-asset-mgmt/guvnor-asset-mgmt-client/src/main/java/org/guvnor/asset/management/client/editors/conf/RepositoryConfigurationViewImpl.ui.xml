@@ -18,106 +18,87 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
-             xmlns:bootstrap='urn:import:com.github.gwtbootstrap.client.ui'>
+             xmlns:bootstrap='urn:import:org.gwtbootstrap3.client.ui'>
 
   <ui:with field="i18n"
            type="org.guvnor.asset.management.client.i18n.Constants"/>
-  
+
 
   <gwt:HTMLPanel>
-    <bootstrap:WellForm type="INLINE">
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="chooseRepositoryBox">
+    <bootstrap:Form type="INLINE">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="chooseRepositoryBox">
             <ui:text from="{i18n.Choose_Repository}"/>
-          </bootstrap:ControlLabel>
+          </bootstrap:FormLabel>
         </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
-          </bootstrap:Controls>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
         </bootstrap:Column>
-      </bootstrap:FluidRow>
+      </bootstrap:Row>
 
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="sourceBranchText">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="sourceBranchText">
             <ui:text from="{i18n.Source_Branch}"/>
-          </bootstrap:ControlLabel>
+          </bootstrap:FormLabel>
         </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:TextBox ui:field="sourceBranchText" placeholder="{i18n.Source_Branch}"/>
-          </bootstrap:Controls>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:TextBox ui:field="sourceBranchText" placeholder="{i18n.Source_Branch}"/>
         </bootstrap:Column>
-       
-      </bootstrap:FluidRow>
-      
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="devBranchText">
-            <ui:text from="{i18n.Dev_Branch}"/>
-          </bootstrap:ControlLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:TextBox ui:field="devBranchText" placeholder="{i18n.Dev_Branch}"/>
-          </bootstrap:Controls>
-        </bootstrap:Column>
-       
-      </bootstrap:FluidRow>
-      
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="releaseBranchText">
-            <ui:text from="{i18n.Release_Branch}"/>
-          </bootstrap:ControlLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:TextBox ui:field="releaseBranchText" placeholder="{i18n.Release_Branch}"/>
-          </bootstrap:Controls>
-        </bootstrap:Column>
-       
-      </bootstrap:FluidRow>
-      
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="currentVersionText">
-            <ui:text from="{i18n.Current_Version}"/>
-          </bootstrap:ControlLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:TextBox ui:field="currentVersionText" placeholder="{i18n.Current_Version}"/>
-          </bootstrap:Controls>
-        </bootstrap:Column>
-       
-      </bootstrap:FluidRow>
-      
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
-          <bootstrap:ControlLabel for="versionText">
-            <ui:text from="{i18n.Version}"/>
-          </bootstrap:ControlLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="5">
-          <bootstrap:Controls>
-            <bootstrap:TextBox ui:field="versionText" placeholder="{i18n.Version}"/>
-          </bootstrap:Controls>
-        </bootstrap:Column>
-       
-      </bootstrap:FluidRow>
-      
+      </bootstrap:Row>
 
-      <bootstrap:FluidRow>
-        <bootstrap:Column size="5">
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="devBranchText">
+            <ui:text from="{i18n.Dev_Branch}"/>
+          </bootstrap:FormLabel>
+        </bootstrap:Column>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:TextBox ui:field="devBranchText" placeholder="{i18n.Dev_Branch}"/>
+        </bootstrap:Column>
+      </bootstrap:Row>
+
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="releaseBranchText">
+            <ui:text from="{i18n.Release_Branch}"/>
+          </bootstrap:FormLabel>
+        </bootstrap:Column>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:TextBox ui:field="releaseBranchText" placeholder="{i18n.Release_Branch}"/>
+        </bootstrap:Column>
+      </bootstrap:Row>
+
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="currentVersionText">
+            <ui:text from="{i18n.Current_Version}"/>
+          </bootstrap:FormLabel>
+        </bootstrap:Column>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:TextBox ui:field="currentVersionText" placeholder="{i18n.Current_Version}"/>
+        </bootstrap:Column>
+      </bootstrap:Row>
+
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:FormLabel for="versionText">
+            <ui:text from="{i18n.Version}"/>
+          </bootstrap:FormLabel>
+        </bootstrap:Column>
+        <bootstrap:Column size="MD_5">
+          <bootstrap:TextBox ui:field="versionText" placeholder="{i18n.Version}"/>
+        </bootstrap:Column>
+      </bootstrap:Row>
+
+      <bootstrap:Row>
+        <bootstrap:Column size="MD_5">
           <bootstrap:Button type="PRIMARY" ui:field='configureButton'>
             {i18n.Configure_Repository}
           </bootstrap:Button>
         </bootstrap:Column>
-        
-      </bootstrap:FluidRow>
-    </bootstrap:WellForm>
+      </bootstrap:Row>
+    </bootstrap:Form>
   </gwt:HTMLPanel>
 </ui:UiBinder>

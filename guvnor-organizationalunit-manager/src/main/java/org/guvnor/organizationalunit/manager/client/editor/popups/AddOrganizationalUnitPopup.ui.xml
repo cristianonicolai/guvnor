@@ -16,47 +16,41 @@
 
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
   <ui:with field="i18n" type="org.guvnor.organizationalunit.manager.client.resources.i18n.OrganizationalUnitManagerConstants"/>
 
   <b:Well>
-    <b:Fieldset>
+    <b:FieldSet>
       <b:Legend>Organizational Unit Information
         <small>* is required</small>
       </b:Legend>
-      <b:ControlGroup ui:field="nameGroup">
-        <b:ControlLabel for="name">
+      <b:FormGroup ui:field="nameGroup">
+        <b:FormLabel for="name">
           <font color="red">*</font>
           Name
-        </b:ControlLabel>
-        <b:Controls>
-          <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="Organizational Unit name..."/>
-          <b:HelpInline ui:field="nameHelpInline"/>
-        </b:Controls>
-      </b:ControlGroup>
-      <b:ControlGroup ui:field="defaultGroupIdGroup">
-        <b:ControlLabel for="groupId">
+        </b:FormLabel>
+        <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="Organizational Unit name..."/>
+        <b:HelpBlock ui:field="nameHelpInline"/>
+      </b:FormGroup>
+      <b:FormGroup ui:field="defaultGroupIdGroup">
+        <b:FormLabel for="groupId">
           <font color="red">*</font>
           Default Group ID
-        </b:ControlLabel>
-        <b:Controls>
-          <b:TextBox ui:field="defaultGroupIdTextBox" placeholder="Default Group Id..."/>
-          <b:HelpInline ui:field="defaultGroupIdHelpInline"/>
-          <b:Popover placement="LEFT" trigger="HOVER" text="{i18n.GroupIdInfo}" heading="{i18n.DefaultGroupId}">
-            <b:Icon ui:field="groupIdHelpIcon" type="QUESTION_SIGN"></b:Icon>
-          </b:Popover>
-        </b:Controls>
-      </b:ControlGroup>
-      <b:ControlGroup ui:field="ownerGroup">
-        <b:ControlLabel for="owner">
+        </b:FormLabel>
+        <b:TextBox ui:field="defaultGroupIdTextBox" placeholder="Default Group Id..."/>
+        <b:HelpBlock ui:field="defaultGroupIdHelpInline"/>
+        <b:Popover placement="LEFT" trigger="HOVER" content="{i18n.GroupIdInfo}" title="{i18n.DefaultGroupId}">
+          <b:Icon ui:field="groupIdHelpIcon" type="QUESTION"/>
+        </b:Popover>
+      </b:FormGroup>
+      <b:FormGroup ui:field="ownerGroup">
+        <b:FormLabel for="owner">
           Owner
-        </b:ControlLabel>
-        <b:Controls>
-          <b:TextBox b:id="owner" ui:field="ownerTextBox" placeholder="Organizational Unit owner..."/>
-        </b:Controls>
-      </b:ControlGroup>
-    </b:Fieldset>
+        </b:FormLabel>
+        <b:TextBox b:id="owner" ui:field="ownerTextBox" placeholder="Organizational Unit owner..."/>
+      </b:FormGroup>
+    </b:FieldSet>
   </b:Well>
 
 </ui:UiBinder>

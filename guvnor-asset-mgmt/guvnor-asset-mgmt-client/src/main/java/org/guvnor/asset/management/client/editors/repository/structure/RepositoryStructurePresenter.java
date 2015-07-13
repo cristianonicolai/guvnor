@@ -23,8 +23,6 @@ import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
 
-import com.github.gwtbootstrap.client.ui.constants.ButtonType;
-import com.github.gwtbootstrap.client.ui.constants.IconType;
 import com.google.gwt.user.client.ui.IsWidget;
 import com.google.gwt.view.client.HasData;
 import com.google.gwt.view.client.ListDataProvider;
@@ -46,6 +44,8 @@ import org.guvnor.common.services.project.model.ProjectWizard;
 import org.guvnor.common.services.project.service.POMService;
 import org.guvnor.common.services.shared.security.impl.KieWorkbenchACLImpl;
 import org.guvnor.structure.repositories.Repository;
+import org.gwtbootstrap3.client.ui.constants.ButtonType;
+import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
@@ -592,7 +592,7 @@ public class RepositoryStructurePresenter
                                                                                       },
                                                                                       CommonConstants.INSTANCE.YES(),
                                                                                       ButtonType.DANGER,
-                                                                                      IconType.MINUS_SIGN,
+                                                                                      IconType.MINUS,
                                                                                       new Command() {
                                                                                           @Override
                                                                                           public void execute() {
@@ -613,7 +613,7 @@ public class RepositoryStructurePresenter
                                                                                       null
                                                                                     );
 
-            yesNoCancelPopup.setCloseVisible( false );
+            yesNoCancelPopup.setClosable( false );
             yesNoCancelPopup.show();
         }
     }
@@ -731,7 +731,7 @@ public class RepositoryStructurePresenter
                                                                                       null
                                                                                     );
 
-            yesNoCancelPopup.setCloseVisible( false );
+            yesNoCancelPopup.setClosable( false );
             yesNoCancelPopup.show();
         }
     }
@@ -789,7 +789,7 @@ public class RepositoryStructurePresenter
                                                                                   null
                                                                                 );
 
-        yesNoCancelPopup.setCloseVisible( false );
+        yesNoCancelPopup.setClosable( false );
         yesNoCancelPopup.show();
 
     }

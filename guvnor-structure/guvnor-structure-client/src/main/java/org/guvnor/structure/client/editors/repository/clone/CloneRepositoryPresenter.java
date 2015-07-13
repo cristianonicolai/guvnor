@@ -23,13 +23,13 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import org.guvnor.structure.client.editors.repository.RepositoryPreferences;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
 import org.guvnor.structure.organizationalunit.OrganizationalUnitService;
 import org.guvnor.structure.repositories.Repository;
 import org.guvnor.structure.repositories.RepositoryAlreadyExistsException;
 import org.guvnor.structure.repositories.RepositoryService;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
@@ -86,35 +86,33 @@ public class CloneRepositoryPresenter implements CloneRepositoryView.Presenter {
     @Override
     public void handleCloneClick() {
         if ( view.isGitUrlEmpty() ) {
-            view.setUrlGroupType( ControlGroupType.ERROR );
+            view.setUrlGroupType( ValidationState.ERROR );
             view.showUrlHelpMandatoryMessage();
             return;
 
         } else if ( !URIUtil.isValid( view.getGitUrl() ) ) {
-            view.setUrlGroupType( ControlGroupType.ERROR );
+            view.setUrlGroupType( ValidationState.ERROR );
             view.showUrlHelpInvalidFormatMessage();
             return;
 
         } else {
-            view.setUrlGroupType( ControlGroupType.NONE );
+            view.setUrlGroupType( ValidationState.NONE );
         }
 
         final String organizationalUnit = view.getOrganizationalUnit( view.getSelectedOrganizationalUnit() );
 
         if ( isOuMandatory() && !availableOrganizationalUnits.containsKey( organizationalUnit ) ) {
-            view.setOrganizationalUnitGroupType( ControlGroupType.ERROR );
+            view.setOrganizationalUnitGroupType( ValidationState.ERROR );
             view.showOrganizationalUnitHelpMandatoryMessage();
             return;
 
         } else {
-            view.setOrganizationalUnitGroupType( ControlGroupType.NONE );
+            view.setOrganizationalUnitGroupType( ValidationState.NONE );
         }
 
         if ( view.isNameEmpty() ) {
-            view.setNameGroupType( ControlGroupType.ERROR );
+            view.setNameGroupType( ValidationState.ERROR );
             view.showNameHelpMandatoryMessage();
-            return;
-
         } else {
             repositoryService.call( new RemoteCallback<String>() {
                 @Override

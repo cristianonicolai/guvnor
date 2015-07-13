@@ -17,7 +17,7 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
   <ui:with field="i18n" type="org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants"/>
 
@@ -42,11 +42,6 @@
 
     .protocols {
       padding-top: 5px;
-    }
-
-    .delete {
-      margin-left: 15px;
-      margin-bottom: 10px;
     }
   </ui:style>
 
@@ -81,8 +76,8 @@
           </div>
           <div class="control-group" style="padding-top:10px; padding-left:14px;">
             <b:ListBox b:id="branches" ui:field="branchesDropdown"/>
-            <b:Button ui:field="btnChangeBranch" icon="FOLDER_CLOSE_ALT" type="PRIMARY" text="{i18n.Update}"/>
-            <b:Button ui:field="btnRemoveRepository" icon="MINUS_SIGN" type="DANGER" text="{i18n.Delete}"/>
+            <b:Button ui:field="btnChangeBranch" icon="FOLDER_O" type="PRIMARY" text="{i18n.Update}"/>
+            <b:Button ui:field="btnRemoveRepository" icon="MINUS" type="DANGER" text="{i18n.Delete}"/>
           </div>
         </div>
 

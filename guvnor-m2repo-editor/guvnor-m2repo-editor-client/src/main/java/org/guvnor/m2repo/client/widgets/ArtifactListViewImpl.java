@@ -18,8 +18,6 @@ package org.guvnor.m2repo.client.widgets;
 import java.util.Date;
 import javax.inject.Inject;
 
-import com.github.gwtbootstrap.client.ui.ButtonCell;
-import com.github.gwtbootstrap.client.ui.resources.ButtonSize;
 import com.google.gwt.cell.client.DateCell;
 import com.google.gwt.cell.client.FieldUpdater;
 import com.google.gwt.cell.client.TextCell;
@@ -34,6 +32,8 @@ import org.guvnor.m2repo.client.resources.i18n.M2RepoEditorConstants;
 import org.guvnor.m2repo.model.JarListPageRequest;
 import org.guvnor.m2repo.model.JarListPageRow;
 import org.guvnor.m2repo.service.M2RepoService;
+import org.gwtbootstrap3.client.ui.constants.ButtonSize;
+import org.gwtbootstrap3.client.ui.gwt.ButtonCell;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.RemoteCallback;
 import org.uberfire.ext.widgets.common.client.tables.PagedTable;
@@ -88,9 +88,7 @@ public class ArtifactListViewImpl extends Composite implements ArtifactListView 
                             M2RepoEditorConstants.INSTANCE.LastModified() );
 
         // Add "View kjar detail" button column
-        final Column<JarListPageRow, String> openColumn = new Column<JarListPageRow, String>( new ButtonCell() {{
-            setSize( ButtonSize.MINI );
-        }} ) {
+        final Column<JarListPageRow, String> openColumn = new Column<JarListPageRow, String>( new ButtonCell( ButtonSize.EXTRA_SMALL ) ) {
             public String getValue( JarListPageRow row ) {
                 return M2RepoEditorConstants.INSTANCE.Open();
             }

@@ -16,8 +16,7 @@
 
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g="urn:import:com.google.gwt.user.client.ui"
-             xmlns:b="urn:import:com.github.gwtbootstrap.client.ui">
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
   <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
@@ -28,80 +27,67 @@
   </ui:style>
 
   <b:Well>
-    <b:Fieldset>
+    <b:FieldSet>
 
-      <!--b:Legend>
-        <ui:text from="{i18n.StructureTypeDescription}"/>
-        <small>
-          <ui:text from="{i18n.IsRequired}"/>
-        </small>
-      </b:Legend-->
+      <b:FormLabel>
+        <strong>
+          <ui:text from="{i18n.RepositoryType}"/>
+        </strong>
+      </b:FormLabel>
+      <b:RadioButton name="moduleType" b:id="isSingleModule" ui:field="isSingleModuleRadioButton" text="{i18n.SingleModule}"/>
+      <b:HelpBlock ui:field="isSingleModuleRadioButtonHelpBlock" text="{i18n.SingleModuleHelpInline}"/>
 
-      <b:ControlLabel><strong><g:Label text="{i18n.RepositoryType}"/></strong></b:ControlLabel>
-      <b:Controls>
-        <b:RadioButton name="moduleType" b:id="isSingleModule" ui:field="isSingleModuleRadioButton" text="{i18n.SingleModule}"/>
-        <b:HelpInline ui:field="isSingleModuleRadioButtonHelpInline" text="{i18n.SingleModuleHelpInline}"/>
-      </b:Controls>
+      <b:RadioButton name="moduleType" b:id="isMultiModule" ui:field="isMultiModuleRadioButton" text="{i18n.MultiModule}"/>
+      <b:HelpBlock ui:field="isMultiModuleRadioButtonHelpBlock" text="{i18n.MultiModuleHelpInline}"/>
 
-      <b:Controls>
-        <b:RadioButton name="moduleType" b:id="isMultiModule" ui:field="isMultiModuleRadioButton" text="{i18n.MultiModule}"/>
-        <b:HelpInline ui:field="isMultiModuleRadioButtonHelpInline" text="{i18n.MultiModuleHelpInline}"/>
-      </b:Controls>
+      <b:FormLabel>
+        <br/>
+        <strong>
+          <ui:text from="{i18n.ProjectBranches}"/>
+        </strong>
+      </b:FormLabel>
+      <b:CheckBox ui:field="isConfigureRepositoryCheckBox" text="{i18n.ConfigureBranches}"></b:CheckBox>
 
-      <b:ControlLabel><br/><strong><g:Label text="{i18n.ProjectBranches}"/></strong></b:ControlLabel>
-      <b:Controls>
-        <b:CheckBox ui:field="isConfigureRepositoryCheckBox" text="{i18n.ConfigureBranches}"></b:CheckBox>
-      </b:Controls>
+      <b:FormLabel>
+        <br/>
+        <strong>
+          <ui:text from="{i18n.ProjectSettings}"/>
+        </strong>
+      </b:FormLabel>
 
-      <b:ControlLabel><br/><strong><g:Label text="{i18n.ProjectSettings}"/></strong></b:ControlLabel>
-
-      <b:ControlLabel for="projectNameTextBox">
+      <b:FormLabel for="projectNameTextBox">
         <span class="{style.mandatory-field}">*</span>
         <ui:text from="{i18n.ProjectName}"/>
-        <!--g:Label ui:field="projectName" text="{i18n.ProjectName}"/-->
-      </b:ControlLabel>
-      <b:Controls>
-        <b:TextBox b:id="projectName" ui:field="projectNameTextBox" placeholder="{i18n.ProjectNameHolder}"/>
-      </b:Controls>
+      </b:FormLabel>
+      <b:TextBox b:id="projectName" ui:field="projectNameTextBox" placeholder="{i18n.ProjectNameHolder}"/>
 
-      <b:ControlLabel for="projectDescriptionTextBox">
-        <g:Label ui:field="projectDescription" text="{i18n.ProjectDescription}"/>
-      </b:ControlLabel>
-      <b:Controls>
-        <b:TextBox b:id="projectDescription" ui:field="projectDescriptionTextBox" placeholder="{i18n.ProjectDescriptionHolder}"/>
-      </b:Controls>
+      <b:FormLabel for="projectDescriptionTextBox">
+        <ui:text from="{i18n.ProjectDescription}"/>
+      </b:FormLabel>
+      <b:TextBox b:id="projectDescription" ui:field="projectDescriptionTextBox" placeholder="{i18n.ProjectDescriptionHolder}"/>
 
-      <b:ControlLabel for="groupIdTextBox">
+      <b:FormLabel for="groupIdTextBox">
         <span class="{style.mandatory-field}">*</span>
         <ui:text from="{i18n.ProjectGroup}"/>
-        <!--g:Label ui:field="groupId" text="{i18n.ProjectGroup}"/-->
-      </b:ControlLabel>
-      <b:Controls>
-        <b:TextBox b:id="groupId" ui:field="groupIdTextBox" placeholder="{i18n.ProjectGroupHolder}"/>
-        <!--b:HelpInline ui:field="groupIdTextBoxHelpInline"/-->
-      </b:Controls>
+      </b:FormLabel>
+      <b:TextBox b:id="groupId" ui:field="groupIdTextBox" placeholder="{i18n.ProjectGroupHolder}"/>
+      <!--b:HelpBlock ui:field="groupIdTextBoxHelpBlock"/-->
 
-      <b:ControlLabel for="artifactIdTextBox">
+      <b:FormLabel for="artifactIdTextBox">
         <span class="{style.mandatory-field}">*</span>
         <ui:text from="{i18n.ProjectArtifact}"/>
-        <!--g:Label ui:field="artifactId" text="{i18n.ProjectArtifact}"/-->
-      </b:ControlLabel>
-      <b:Controls>
-        <b:TextBox b:id="artifactId" ui:field="artifactIdTextBox" placeholder="{i18n.ProjectArtifactHolder}"/>
-        <!--b:HelpInline ui:field="artifactIdTextBoxHelpInline"/-->
-      </b:Controls>
+      </b:FormLabel>
+      <b:TextBox b:id="artifactId" ui:field="artifactIdTextBox" placeholder="{i18n.ProjectArtifactHolder}"/>
+      <!--b:HelpBlock ui:field="artifactIdTextBoxHelpBlock"/-->
 
-      <b:ControlLabel for="versionTextBox">
+      <b:FormLabel for="versionTextBox">
         <span class="{style.mandatory-field}">*</span>
         <ui:text from="{i18n.ProjectVersion}"/>
-        <!--g:Label ui:field="version" text="{i18n.ProjectVersion}"/-->
-      </b:ControlLabel>
-      <b:Controls>
-        <b:TextBox b:id="version" ui:field="versionTextBox" placeholder="{i18n.ProjectVersionHolder}"/>
-        <!--b:HelpInline ui:field="versionTextBoxHelpInline"/-->
-      </b:Controls>
+      </b:FormLabel>
+      <b:TextBox b:id="version" ui:field="versionTextBox" placeholder="{i18n.ProjectVersionHolder}"/>
+      <!--b:HelpBlock ui:field="versionTextBoxHelpBlock"/-->
 
-    </b:Fieldset>
+    </b:FieldSet>
 
   </b:Well>
 
