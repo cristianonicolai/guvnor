@@ -44,7 +44,7 @@ public class JarDetailPopup extends BaseModal {
 
     public JarDetailPopup( final String details ) {
         setTitle( M2RepoEditorConstants.INSTANCE.JarDetails() );
-        setHideOthers( false );
+        setHideOtherModals( false );
 
         add( uiBinder.createAndBindUi( this ) );
         add( new ModalFooterOKButton( new Command() {

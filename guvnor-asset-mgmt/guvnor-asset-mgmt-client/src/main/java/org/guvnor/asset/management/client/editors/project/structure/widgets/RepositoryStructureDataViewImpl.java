@@ -16,14 +16,14 @@
 
 package org.guvnor.asset.management.client.editors.project.structure.widgets;
 
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.Label;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.asset.management.client.i18n.Constants;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.Label;
 
 public class RepositoryStructureDataViewImpl extends Composite
         implements RepositoryStructureDataView {
@@ -44,15 +44,14 @@ public class RepositoryStructureDataViewImpl extends Composite
     @UiField
     Label versionTextBox;
 
+    @UiField
+    HelpBlock groupIdTextBoxHelpInline;
 
     @UiField
-    HelpInline groupIdTextBoxHelpInline;
+    HelpBlock artifactIdTextBoxHelpInline;
 
     @UiField
-    HelpInline artifactIdTextBoxHelpInline;
-
-    @UiField
-    HelpInline versionTextBoxHelpInline;
+    HelpBlock versionTextBoxHelpInline;
 
 
     @UiField

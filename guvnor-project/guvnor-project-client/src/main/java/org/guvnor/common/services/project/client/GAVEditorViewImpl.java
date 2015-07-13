@@ -15,11 +15,6 @@
  */
 package org.guvnor.common.services.project.client;
 
-import com.github.gwtbootstrap.client.ui.ControlGroup;
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.Icon;
-import com.github.gwtbootstrap.client.ui.TextBox;
-import com.github.gwtbootstrap.client.ui.constants.ControlGroupType;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -29,6 +24,11 @@ import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.common.services.project.client.resources.ProjectResources;
+import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.Icon;
+import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.client.ui.constants.ValidationState;
 
 public class GAVEditorViewImpl
         extends Composite
@@ -42,13 +42,13 @@ public class GAVEditorViewImpl
     private static Binder uiBinder = GWT.create( Binder.class );
 
     @UiField
-    ControlGroup groupIdGroup;
+    FormGroup groupIdGroup;
 
     @UiField
     TextBox groupIdTextBox;
 
     @UiField
-    HelpInline groupIdHelpInline;
+    HelpBlock groupIdHelpBlock;
 
     @UiField
     Icon gavHelpIcon;
@@ -60,22 +60,22 @@ public class GAVEditorViewImpl
     Icon gavHelpIcon3;
 
     @UiField
-    ControlGroup artifactIdGroup;
+    FormGroup artifactIdGroup;
 
     @UiField
     TextBox artifactIdTextBox;
 
     @UiField
-    HelpInline artifactIdHelpInline;
+    HelpBlock artifactIdHelpBlock;
 
     @UiField
-    ControlGroup versionGroup;
+    FormGroup versionGroup;
 
     @UiField
     TextBox versionTextBox;
 
     @UiField
-    HelpInline versionHelpInline;
+    HelpBlock versionHelpBlock;
 
     private Presenter presenter;
 
@@ -150,33 +150,33 @@ public class GAVEditorViewImpl
     @Override
     public void setValidGroupID( final boolean isValid ) {
         if ( isValid ) {
-            groupIdGroup.setType( ControlGroupType.NONE );
-            groupIdHelpInline.setText( "" );
+            groupIdGroup.setValidationState( ValidationState.NONE );
+            groupIdHelpBlock.setText( "" );
         } else {
-            groupIdGroup.setType( ControlGroupType.ERROR );
-            groupIdHelpInline.setText( ProjectResources.CONSTANTS.invalidGroupId() );
+            groupIdGroup.setValidationState( ValidationState.ERROR );
+            groupIdHelpBlock.setText( ProjectResources.CONSTANTS.invalidGroupId() );
         }
     }
 
     @Override
     public void setValidArtifactID( final boolean isValid ) {
         if ( isValid ) {
-            artifactIdGroup.setType( ControlGroupType.NONE );
-            artifactIdHelpInline.setText( "" );
+            artifactIdGroup.setValidationState( ValidationState.NONE );
+            artifactIdHelpBlock.setText( "" );
         } else {
-            artifactIdGroup.setType( ControlGroupType.ERROR );
-            artifactIdHelpInline.setText( ProjectResources.CONSTANTS.invalidArtifactId() );
+            artifactIdGroup.setValidationState( ValidationState.ERROR );
+            artifactIdHelpBlock.setText( ProjectResources.CONSTANTS.invalidArtifactId() );
         }
     }
 
     @Override
     public void setValidVersion( final boolean isValid ) {
         if ( isValid ) {
-            versionGroup.setType( ControlGroupType.NONE );
-            versionHelpInline.setText( "" );
+            versionGroup.setValidationState( ValidationState.NONE );
+            versionHelpBlock.setText( "" );
         } else {
-            versionGroup.setType( ControlGroupType.ERROR );
-            versionHelpInline.setText( ProjectResources.CONSTANTS.invalidVersion() );
+            versionGroup.setValidationState( ValidationState.ERROR );
+            versionHelpBlock.setText( ProjectResources.CONSTANTS.invalidVersion() );
         }
     }
 

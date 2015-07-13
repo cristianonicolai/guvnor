@@ -16,10 +16,6 @@
 
 package org.guvnor.asset.management.client.editors.repository.wizard.pages;
 
-import com.github.gwtbootstrap.client.ui.CheckBox;
-import com.github.gwtbootstrap.client.ui.HelpInline;
-import com.github.gwtbootstrap.client.ui.RadioButton;
-import com.github.gwtbootstrap.client.ui.TextBox;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -30,6 +26,10 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
+import org.gwtbootstrap3.client.ui.CheckBox;
+import org.gwtbootstrap3.client.ui.HelpBlock;
+import org.gwtbootstrap3.client.ui.RadioButton;
+import org.gwtbootstrap3.client.ui.TextBox;
 
 public class RepositoryStructurePageViewImpl extends Composite
         implements RepositoryStructurePageView {
@@ -55,7 +55,7 @@ public class RepositoryStructurePageViewImpl extends Composite
 
     /*
     @UiField
-    HelpInline groupIdTextBoxHelpInline;
+    HelpBlock groupIdTextBoxHelpBlock;
     */
 
     @UiField
@@ -63,7 +63,7 @@ public class RepositoryStructurePageViewImpl extends Composite
 
     /*
     @UiField
-    HelpInline artifactIdTextBoxHelpInline;
+    HelpBlock artifactIdTextBoxHelpBlock;
     */
 
     @UiField
@@ -71,7 +71,7 @@ public class RepositoryStructurePageViewImpl extends Composite
 
     /*
     @UiField
-    HelpInline versionTextBoxHelpInline;
+    HelpBlock versionTextBoxHelpBlock;
     */
 
     @UiField
@@ -79,7 +79,7 @@ public class RepositoryStructurePageViewImpl extends Composite
 
 
     @UiField
-    HelpInline isSingleModuleRadioButtonHelpInline;
+    HelpBlock isSingleModuleRadioButtonHelpBlock;
 
 
     @UiField
@@ -87,7 +87,7 @@ public class RepositoryStructurePageViewImpl extends Composite
 
 
     @UiField
-    HelpInline isMultiModuleRadioButtonHelpInline;
+    HelpBlock isMultiModuleRadioButtonHelpBlock;
 
 
     @UiField
