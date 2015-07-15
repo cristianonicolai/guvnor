@@ -25,7 +25,6 @@ import java.util.Set;
 import javax.inject.Inject;
 
 import com.google.gwt.animation.client.Animation;
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.logical.shared.CloseEvent;
@@ -37,7 +36,7 @@ import org.guvnor.common.services.shared.config.AppConfigService;
 import org.guvnor.structure.client.editors.repository.clone.CloneRepositoryPresenter;
 import org.guvnor.structure.client.editors.repository.create.CreateRepositoryForm;
 import org.jboss.errai.common.client.api.Caller;
-import org.jboss.errai.common.client.api.RemoteCallback;
+import org.jboss.errai.common.client.api.VoidCallback;
 import org.jboss.errai.ioc.client.api.AfterInitialization;
 import org.jboss.errai.ioc.client.api.EntryPoint;
 import org.jboss.errai.ioc.client.container.IOCBeanDef;
@@ -298,18 +297,8 @@ public class GuvnorWorkbenchEntryPoint {
 
         @Override
         public void execute() {
-            authService.call( new RemoteCallback<Void>() {
-                @Override
-                public void callback( Void response ) {
-                    final String location = GWT.getModuleBaseURL().replaceFirst( "/" + GWT.getModuleName() + "/", "/logout.jsp" );
-                    redirect( location );
-                }
-            } ).logout();
+            authService.call( new VoidCallback() ).logout();
         }
     }
-
-    public static native void redirect( String url )/*-{
-        $wnd.location = url;
-    }-*/;
 
 }
