@@ -43,7 +43,6 @@ import org.jboss.errai.ioc.client.api.EntryPoint;
 import org.jboss.errai.ioc.client.container.IOCBeanDef;
 import org.jboss.errai.ioc.client.container.SyncBeanManager;
 import org.jboss.errai.security.shared.service.AuthenticationService;
-import org.uberfire.client.menu.CustomSplashHelp;
 import org.uberfire.client.mvp.AbstractWorkbenchPerspectiveActivity;
 import org.uberfire.client.mvp.ActivityManager;
 import org.uberfire.client.mvp.PlaceManager;
@@ -231,17 +230,7 @@ public class GuvnorWorkbenchEntryPoint {
                 .endMenu()
                 .newTopLevelMenu( AppConstants.INSTANCE.Logout() )
                 .respondsWith( new LogoutCommand() )
-                .endMenu()
-                .newTopLevelMenu( AppConstants.INSTANCE.Find() )
                 .position( MenuPosition.RIGHT )
-                .respondsWith( new Command() {
-                    @Override
-                    public void execute() {
-                        placeManager.goTo( "FindForm" );
-                    }
-                } )
-                .endMenu()
-                .newTopLevelCustomMenu( iocManager.lookupBean( CustomSplashHelp.class ).getInstance() )
                 .endMenu()
                 .build();
 
@@ -274,15 +263,15 @@ public class GuvnorWorkbenchEntryPoint {
         //Sort Perspective Providers so they're always in the same sequence!
         List<AbstractWorkbenchPerspectiveActivity> sortedActivities = new ArrayList<AbstractWorkbenchPerspectiveActivity>( activities );
         Collections.sort( sortedActivities,
-                          new Comparator<AbstractWorkbenchPerspectiveActivity>() {
+                new Comparator<AbstractWorkbenchPerspectiveActivity>() {
 
-                              @Override
-                              public int compare( AbstractWorkbenchPerspectiveActivity o1,
-                                                  AbstractWorkbenchPerspectiveActivity o2 ) {
-                                  return o1.getDefaultPerspectiveLayout().getName().compareTo( o2.getDefaultPerspectiveLayout().getName() );
-                              }
+                    @Override
+                    public int compare( AbstractWorkbenchPerspectiveActivity o1,
+                                        AbstractWorkbenchPerspectiveActivity o2 ) {
+                        return o1.getDefaultPerspectiveLayout().getName().compareTo( o2.getDefaultPerspectiveLayout().getName() );
+                    }
 
-                          } );
+                } );
 
         return sortedActivities;
     }
