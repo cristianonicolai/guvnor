@@ -17,7 +17,6 @@
 package org.guvnor.organizationalunit.manager.client.editor.popups;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
@@ -30,7 +29,6 @@ import org.guvnor.organizationalunit.manager.client.editor.OrganizationalUnitMan
 import org.guvnor.organizationalunit.manager.client.resources.i18n.OrganizationalUnitManagerConstants;
 import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.common.client.api.RemoteCallback;
@@ -67,9 +65,6 @@ public class AddOrganizationalUnitPopup extends BaseModal implements UberView<Or
     HelpBlock defaultGroupIdHelpInline;
 
     @UiField
-    Icon groupIdHelpIcon;
-
-    @UiField
     TextBox ownerTextBox;
 
     private OrganizationalUnitManagerPresenter presenter;
@@ -96,11 +91,8 @@ public class AddOrganizationalUnitPopup extends BaseModal implements UberView<Or
     public AddOrganizationalUnitPopup() {
         setTitle( OrganizationalUnitManagerConstants.INSTANCE.AddOrganizationalUnitPopupTitle() );
 
-        add( uiBinder.createAndBindUi( this ) );
+        setBody( uiBinder.createAndBindUi( this ) );
         add( footer );
-
-        groupIdHelpIcon.getElement().getStyle().setPaddingLeft( 5, Style.Unit.PX );
-        groupIdHelpIcon.getElement().getStyle().setCursor( Style.Cursor.POINTER );
 
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
