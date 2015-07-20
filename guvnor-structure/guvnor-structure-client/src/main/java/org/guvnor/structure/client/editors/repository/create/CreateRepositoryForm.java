@@ -29,14 +29,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
 import com.google.gwt.event.logical.shared.CloseEvent;
-import com.google.gwt.event.logical.shared.CloseHandler;
-import com.google.gwt.event.logical.shared.HasCloseHandlers;
-import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.PopupPanel;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.editors.repository.RepositoryPreferences;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
@@ -64,8 +61,7 @@ import org.uberfire.mvp.impl.DefaultPlaceRequest;
 
 @Dependent
 public class CreateRepositoryForm
-        extends Composite
-        implements HasCloseHandlers<CreateRepositoryForm> {
+        extends PopupPanel {
 
     interface CreateRepositoryFormBinder
             extends
@@ -115,7 +111,7 @@ public class CreateRepositoryForm
     public void init() {
         mandatoryOU = isOUMandatory();
 
-        initWidget( uiBinder.createAndBindUi( this ) );
+        setWidget( uiBinder.createAndBindUi( this ) );
 
         if ( !mandatoryOU ) {
             isOUMandatory.removeFromParent();
@@ -162,11 +158,6 @@ public class CreateRepositoryForm
         } catch ( IOCResolutionException exception ) {
         }
         return true;
-    }
-
-    @Override
-    public HandlerRegistration addCloseHandler( final CloseHandler<CreateRepositoryForm> handler ) {
-        return addHandler( handler, CloseEvent.getType() );
     }
 
     @UiHandler("create")

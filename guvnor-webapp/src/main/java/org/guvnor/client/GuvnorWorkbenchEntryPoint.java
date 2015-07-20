@@ -104,9 +104,9 @@ public class GuvnorWorkbenchEntryPoint {
             public void execute() {
                 final CreateRepositoryForm newRepositoryWizard = iocManager.lookupBean( CreateRepositoryForm.class ).getInstance();
                 //When pop-up is closed destroy bean to avoid memory leak
-                newRepositoryWizard.addCloseHandler( new CloseHandler<CreateRepositoryForm>() {
+                newRepositoryWizard.addCloseHandler( new CloseHandler<PopupPanel>() {
                     @Override
-                    public void onClose( CloseEvent<CreateRepositoryForm> event ) {
+                    public void onClose( CloseEvent<PopupPanel> event ) {
                         iocManager.destroyBean( newRepositoryWizard );
                     }
                 } );
