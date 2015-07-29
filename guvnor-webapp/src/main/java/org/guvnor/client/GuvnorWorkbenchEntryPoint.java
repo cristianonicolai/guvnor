@@ -227,6 +227,14 @@ public class GuvnorWorkbenchEntryPoint {
                 .endMenu()
                 .endMenus()
                 .endMenu()
+                .newTopLevelMenu( "Messages" )
+                .respondsWith( new Command() {
+                    @Override
+                    public void execute() {
+                        placeManager.goTo( new DefaultPlaceRequest( "MessagesPerspective" ) );
+                    }
+                } )
+                .endMenu()
                 .newTopLevelMenu( AppConstants.INSTANCE.Logout() )
                 .respondsWith( new LogoutCommand() )
                 .position( MenuPosition.RIGHT )
