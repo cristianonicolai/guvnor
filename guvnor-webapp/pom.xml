@@ -286,7 +286,7 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- UberFire BS2 -->
+    <!-- UberFire PatternFly -->
     <dependency>
       <groupId>org.uberfire</groupId>
       <artifactId>uberfire-workbench-client-views-patternfly</artifactId>
