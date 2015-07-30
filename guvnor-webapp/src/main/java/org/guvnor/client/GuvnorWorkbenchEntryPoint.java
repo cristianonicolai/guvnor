@@ -235,6 +235,14 @@ public class GuvnorWorkbenchEntryPoint {
                     }
                 } )
                 .endMenu()
+                .newTopLevelMenu( "Inbox" )
+                .respondsWith( new Command() {
+                    @Override
+                    public void execute() {
+                        placeManager.goTo( new DefaultPlaceRequest( "InboxPerspective" ) );
+                    }
+                } )
+                .endMenu()
                 .newTopLevelMenu( AppConstants.INSTANCE.Logout() )
                 .respondsWith( new LogoutCommand() )
                 .position( MenuPosition.RIGHT )
