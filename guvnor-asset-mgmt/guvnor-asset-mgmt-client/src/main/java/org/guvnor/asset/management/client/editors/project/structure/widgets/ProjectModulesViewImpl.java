@@ -29,7 +29,7 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.asset.management.client.i18n.Constants;
 import org.gwtbootstrap3.client.ui.Button;
-import org.gwtbootstrap3.client.ui.Label;
+import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.constants.ButtonType;
 import org.gwtbootstrap3.client.ui.constants.IconType;
@@ -53,7 +53,7 @@ public class ProjectModulesViewImpl extends Composite
     Button addModuleButton;
 
     @UiField
-    Label modulesLabel;
+    Heading modulesLabel;
 
     private Column<ProjectModuleRow, ?> modulesColumn;
 

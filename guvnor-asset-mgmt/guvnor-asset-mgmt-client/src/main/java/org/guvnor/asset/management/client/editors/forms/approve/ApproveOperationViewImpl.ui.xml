@@ -20,67 +20,66 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:org.gwtbootstrap3.client.ui'>
 
-  <ui:with field="i18n"
-           type="org.guvnor.asset.management.client.i18n.Constants"/>
+    <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
-  <ui:style>
-    .highlighted-field {
-      font-style: italic;
-      font-weight: bold
-    }
-  </ui:style>
-  <g:HTMLPanel>
-    <b:Well>
-      <b:FieldSet>
-        <b:Legend>
-          <ui:text from="{i18n.ApproveOperation}"/>
-        </b:Legend>
+    <g:HTMLPanel>
+        <b:Container fluid="true">
+            <b:Row>
+                <b:Column size="MD_12">
+                    <b:Form type="HORIZONTAL">
+                        <b:FieldSet>
+                            <b:Legend>
+                                <ui:text from="{i18n.ApproveOperation}"/>
+                            </b:Legend>
 
-        <b:FormGroup ui:field="requestorGroup">
-          <b:FormLabel for="requestor">
-            <span class="{style.highlighted-field}">
-              <ui:text from="{i18n.Requestor}"/>
-            </span>
-          </b:FormLabel>
-          <b:TextBox b:id="requestor" ui:field="requestorTextBox" placeholder=""/>
-        </b:FormGroup>
+                            <b:FormGroup ui:field="requestorGroup">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="requestor" text="{i18n.Requestor}"/>
+                                </b:Column>
+                                <b:Column size="MD_10">
+                                    <b:TextBox b:id="requestor" ui:field="requestorTextBox" placeholder=""/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="operationGroup">
-          <b:FormLabel for="operation">
-            <span class="{style.highlighted-field}">
-              <ui:text from="{i18n.Operation}"/>
-            </span>
-          </b:FormLabel>
-          <b:TextBox b:id="operation" ui:field="operationTextBox" placeholder=""/>
-        </b:FormGroup>
+                            <b:FormGroup ui:field="operationGroup">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="operation" text="{i18n.Operation}"/>
+                                </b:Column>
+                                <b:Column size="MD_10">
+                                    <b:TextBox b:id="operation" ui:field="operationTextBox" placeholder=""/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="repositoryGroup">
-          <b:FormLabel for="repository">
-            <span class="{style.highlighted-field}">
-              <ui:text from="{i18n.Repository}"/>
-            </span>
-          </b:FormLabel>
-          <b:TextBox b:id="repository" ui:field="repositoryTextBox" placeholder=""/>
-        </b:FormGroup>
+                            <b:FormGroup ui:field="repositoryGroup">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="repository" text="{i18n.Repository}"/>
+                                </b:Column>
+                                <b:Column size="MD_10">
+                                    <b:TextBox b:id="repository" ui:field="repositoryTextBox" placeholder=""/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="projectGroup">
-          <b:FormLabel for="project">
-            <span class="{style.highlighted-field}">
-              <ui:text from="{i18n.Project}"/>
-            </span>
-          </b:FormLabel>
-          <b:TextBox b:id="project" ui:field="projectTextBox" placeholder=""/>
-        </b:FormGroup>
+                            <b:FormGroup ui:field="projectGroup">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="project" text="{i18n.Project}"/>
+                                </b:Column>
+                                <b:Column size="MD_10">
+                                    <b:TextBox b:id="project" ui:field="projectTextBox" placeholder=""/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="approvedGroup">
-          <b:FormLabel for="approved">
-            <span class="{style.highlighted-field}">
-              <ui:text from="{i18n.IsApproved}"/>
-            </span>
-          </b:FormLabel>
-          <b:CheckBox b:id="approved" ui:field="approvedCheckBox"/>
-        </b:FormGroup>
-      </b:FieldSet>
-    </b:Well>
-  </g:HTMLPanel>
+                            <b:FormGroup ui:field="approvedGroup">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="approved" text="{i18n.IsApproved}"/>
+                                </b:Column>
+                                <b:Column size="MD_10">
+                                    <b:CheckBox b:id="approved" ui:field="approvedCheckBox"/>
+                                </b:Column>
+                            </b:FormGroup>
+                        </b:FieldSet>
+                    </b:Form>
+                </b:Column>
+            </b:Row>
+        </b:Container>
+    </g:HTMLPanel>
 </ui:UiBinder>

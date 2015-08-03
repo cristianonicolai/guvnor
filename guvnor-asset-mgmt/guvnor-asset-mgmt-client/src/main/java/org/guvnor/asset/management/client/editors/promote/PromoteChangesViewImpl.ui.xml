@@ -18,56 +18,58 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
-             xmlns:bootstrap='urn:import:org.gwtbootstrap3.client.ui'>
+             xmlns:b='urn:import:org.gwtbootstrap3.client.ui'>
 
-  <ui:with field="i18n"
-           type="org.guvnor.asset.management.client.i18n.Constants"/>
-
-
-  <gwt:HTMLPanel>
-    <bootstrap:Form type="INLINE">
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseRepositoryBox">
-            <ui:text from="{i18n.Choose_Repository}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
-
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseSourceBranchBox">
-            <ui:text from="{i18n.Choose_Source_Branch}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseSourceBranchBox"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
-
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseTargetBranchBox">
-            <ui:text from="{i18n.Choose_Destination_Branch}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseTargetBranchBox"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
+    <ui:with field="i18n"
+             type="org.guvnor.asset.management.client.i18n.Constants"/>
 
 
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:Button type="PRIMARY" ui:field='promoteButton'>
-            <ui:text from="{i18n.Promote_Assets}"/>
-          </bootstrap:Button>
-        </bootstrap:Column>
+    <gwt:HTMLPanel>
+        <b:Container fluid="true">
+            <b:Row>
+                <b:Column size="MD_12">
+                    <b:Form type="HORIZONTAL">
+                        <b:FieldSet>
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseRepositoryBox" text="{i18n.Choose_Repository}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseRepositoryBox"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      </bootstrap:Row>
-    </bootstrap:Form>
-  </gwt:HTMLPanel>
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseSourceBranchBox">
+                                        <ui:text from="{i18n.Choose_Source_Branch}"/>
+                                    </b:FormLabel>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseSourceBranchBox"/>
+                                </b:Column>
+                            </b:FormGroup>
+
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseTargetBranchBox">
+                                        <ui:text from="{i18n.Choose_Destination_Branch}"/>
+                                    </b:FormLabel>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseTargetBranchBox"/>
+                                </b:Column>
+                            </b:FormGroup>
+
+                            <b:FormGroup>
+                                <b:Column size="MD_5" offset="MD_2">
+                                    <b:Button type="PRIMARY" ui:field='promoteButton' text="{i18n.Promote_Assets}"/>
+                                </b:Column>
+                            </b:FormGroup>
+                        </b:FieldSet>
+                    </b:Form>
+                </b:Column>
+            </b:Row>
+        </b:Container>
+    </gwt:HTMLPanel>
 </ui:UiBinder>

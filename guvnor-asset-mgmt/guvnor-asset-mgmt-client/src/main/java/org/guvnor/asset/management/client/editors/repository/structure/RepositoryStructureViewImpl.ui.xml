@@ -19,19 +19,22 @@
              xmlns:b='urn:import:org.gwtbootstrap3.client.ui'
              xmlns:guvnor="urn:import:org.guvnor.asset.management.client.editors.project.structure.widgets">
 
-  <ui:with field="i18n"
-           type="org.guvnor.asset.management.client.i18n.Constants"/>
+    <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
-  <b:Container fluid="true">
+    <b:Container fluid="true">
 
-    <b:Row ui:field="dataViewContainer">
-      <guvnor:RepositoryStructureDataView ui:field="dataView"></guvnor:RepositoryStructureDataView>
-    </b:Row>
+        <b:Row ui:field="dataViewContainer">
+            <b:Column size="MD_12">
+                <guvnor:RepositoryStructureDataView ui:field="dataView"></guvnor:RepositoryStructureDataView>
+            </b:Column>
+        </b:Row>
 
-    <b:Row ui:field="modulesViewContainer">
-      <guvnor:ProjectModulesView ui:field="modulesView"></guvnor:ProjectModulesView>
-    </b:Row>
+        <b:Row ui:field="modulesViewContainer">
+            <b:Column size="MD_12">
+                <guvnor:ProjectModulesView ui:field="modulesView"></guvnor:ProjectModulesView>
+            </b:Column>
+        </b:Row>
 
-  </b:Container>
+    </b:Container>
 
 </ui:UiBinder>

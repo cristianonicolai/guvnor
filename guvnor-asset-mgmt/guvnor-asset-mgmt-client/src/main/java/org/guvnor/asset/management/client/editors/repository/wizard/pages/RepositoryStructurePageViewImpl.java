@@ -24,11 +24,9 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.CheckBox;
-import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.RadioButton;
+import org.gwtbootstrap3.client.ui.Radio;
 import org.gwtbootstrap3.client.ui.TextBox;
 
 public class RepositoryStructurePageViewImpl extends Composite
@@ -42,8 +40,6 @@ public class RepositoryStructurePageViewImpl extends Composite
 
     private Presenter presenter;
 
-    Label infoLabelLabel;
-
     @UiField
     TextBox projectNameTextBox;
 
@@ -53,41 +49,18 @@ public class RepositoryStructurePageViewImpl extends Composite
     @UiField
     TextBox groupIdTextBox;
 
-    /*
-    @UiField
-    HelpBlock groupIdTextBoxHelpBlock;
-    */
-
     @UiField
     TextBox artifactIdTextBox;
-
-    /*
-    @UiField
-    HelpBlock artifactIdTextBoxHelpBlock;
-    */
 
     @UiField
     TextBox versionTextBox;
 
-    /*
     @UiField
-    HelpBlock versionTextBoxHelpBlock;
-    */
-
-    @UiField
-    RadioButton isSingleModuleRadioButton;
+    Radio isSingleModuleRadioButton;
 
 
     @UiField
-    HelpBlock isSingleModuleRadioButtonHelpBlock;
-
-
-    @UiField
-    RadioButton isMultiModuleRadioButton;
-
-
-    @UiField
-    HelpBlock isMultiModuleRadioButtonHelpBlock;
+    Radio isMultiModuleRadioButton;
 
 
     @UiField

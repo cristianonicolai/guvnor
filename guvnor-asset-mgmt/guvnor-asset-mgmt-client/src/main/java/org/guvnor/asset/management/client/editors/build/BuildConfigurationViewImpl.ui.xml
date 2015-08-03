@@ -18,102 +18,90 @@
 <!DOCTYPE ui:UiBinder SYSTEM "http://dl.google.com/gwt/DTD/xhtml.ent">
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
-             xmlns:bootstrap='urn:import:org.gwtbootstrap3.client.ui'>
+             xmlns:b='urn:import:org.gwtbootstrap3.client.ui'>
 
-  <ui:with field="i18n"
-           type="org.guvnor.asset.management.client.i18n.Constants"/>
+    <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
 
-  <gwt:HTMLPanel>
-    <bootstrap:Form type="INLINE">
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseRepositoryBox">
-            <ui:text from="{i18n.Choose_Repository}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseRepositoryBox"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
+    <gwt:HTMLPanel>
+        <b:Container fluid="true">
+            <b:Row>
+                <b:Column size="MD_12">
+                    <b:Form type="HORIZONTAL">
+                        <b:FieldSet>
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseRepositoryBox" text="{i18n.Choose_Repository}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseRepositoryBox"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseBranchBox">
-            <ui:text from="{i18n.Choose_Branch}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseBranchBox"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseBranchBox" text="{i18n.Choose_Branch}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseBranchBox"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="chooseProjectBox">
-            <ui:text from="{i18n.Choose_Project}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:ListBox ui:field="chooseProjectBox"/>
-        </bootstrap:Column>
+                            <b:FormGroup>
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="chooseProjectBox" text="{i18n.Choose_Project}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:ListBox ui:field="chooseProjectBox"/>
+                                </b:Column>
 
-      </bootstrap:Row>
+                            </b:FormGroup>
 
-      <bootstrap:Row ui:field="deployToRuntimeRow">
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="deployToRuntimeCheck">
-            <ui:text from="{i18n.Deploy_To_Runtime}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:CheckBox ui:field="deployToRuntimeCheck"/>
-        </bootstrap:Column>
+                            <b:FormGroup ui:field="deployToRuntimeRow">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="deployToRuntimeCheck" text="{i18n.Deploy_To_Runtime}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:CheckBox ui:field="deployToRuntimeCheck"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      </bootstrap:Row>
+                            <b:FormGroup ui:field="usernameRow">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="userNameText" text="{i18n.User_Name}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:TextBox ui:field="userNameText" placeholder="{i18n.User_Name}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <bootstrap:Row ui:field="usernameRow">
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="userNameText">
-            <ui:text from="{i18n.User_Name}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:TextBox ui:field="userNameText" placeholder="{i18n.User_Name}"/>
-        </bootstrap:Column>
-      </bootstrap:Row>
+                            <b:FormGroup ui:field="passwordRow">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="passwordText" text="{i18n.Password}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:Input type="PASSWORD" ui:field="passwordText" placeholder="{i18n.Password}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <bootstrap:Row ui:field="passwordRow">
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="passwordText">
-            <ui:text from="{i18n.Password}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:Input type="PASSWORD" ui:field="passwordText" placeholder="{i18n.Password}"/>
-        </bootstrap:Column>
+                            <b:FormGroup ui:field="serverURLRow">
+                                <b:Column size="MD_2">
+                                    <b:FormLabel for="serverURLText" text="{i18n.Server_URL}"/>
+                                </b:Column>
+                                <b:Column size="MD_5">
+                                    <b:TextBox ui:field="serverURLText" placeholder="{i18n.Server_URL}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      </bootstrap:Row>
-      <bootstrap:Row ui:field="serverURLRow">
-        <bootstrap:Column size="MD_5">
-          <bootstrap:FormLabel for="serverURLText">
-            <ui:text from="{i18n.Server_URL}"/>
-          </bootstrap:FormLabel>
-        </bootstrap:Column>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:TextBox ui:field="serverURLText" placeholder="{i18n.Server_URL}"/>
-        </bootstrap:Column>
-
-      </bootstrap:Row>
-
-      <bootstrap:Row>
-        <bootstrap:Column size="MD_5">
-          <bootstrap:Button type="PRIMARY" ui:field='buildButton'>
-            <ui:text from="{i18n.Build_Project}"/>
-          </bootstrap:Button>
-        </bootstrap:Column>
-
-      </bootstrap:Row>
-    </bootstrap:Form>
-  </gwt:HTMLPanel>
+                            <b:FormGroup>
+                                <b:Column size="MD_5" offset="MD_2">
+                                    <b:Button type="PRIMARY" ui:field='buildButton' text="{i18n.Build_Project}"/>
+                                </b:Column>
+                            </b:FormGroup>
+                        </b:FieldSet>
+                    </b:Form>
+                </b:Column>
+            </b:Row>
+        </b:Container>
+    </gwt:HTMLPanel>
 </ui:UiBinder>

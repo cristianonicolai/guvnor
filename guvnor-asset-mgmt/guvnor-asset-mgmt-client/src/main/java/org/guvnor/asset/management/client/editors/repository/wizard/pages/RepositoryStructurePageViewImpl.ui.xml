@@ -19,81 +19,93 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-  <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
+    <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
-  <ui:style>
-    .mandatory-field {
-      color: red !important;
-    }
-  </ui:style>
+    <g:HTMLPanel>
+        <b:Container fluid="true">
+            <b:Row>
+                <b:Column size="MD_12">
+                    <b:Form type="HORIZONTAL">
+                        <b:FieldSet>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel text="{i18n.RepositoryType}"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <g:FlowPanel>
+                                        <b:Radio name="moduleType" b:id="isSingleModule" ui:field="isSingleModuleRadioButton" text="{i18n.SingleModule}"/>
+                                        <b:HelpBlock ui:field="isSingleModuleRadioButtonHelpBlock"/>
+                                        <b:Radio name="moduleType" b:id="isMultiModule" ui:field="isMultiModuleRadioButton" text="{i18n.MultiModule}"/>
+                                        <b:HelpBlock ui:field="isMultiModuleRadioButtonHelpBlock"/>
+                                    </g:FlowPanel>
+                                </b:Column>
+                            </b:FormGroup>
 
-  <b:Well>
-    <b:FieldSet>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel text="{i18n.ProjectBranches}"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:CheckBox ui:field="isConfigureRepositoryCheckBox" text="{i18n.ConfigureBranches}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel>
-        <strong>
-          <g:Label text="{i18n.RepositoryType}"/>
-        </strong>
-      </b:FormLabel>
-      <b:RadioButton name="moduleType" b:id="isSingleModule" ui:field="isSingleModuleRadioButton" text="{i18n.SingleModule}"/>
-      <b:HelpBlock ui:field="isSingleModuleRadioButtonHelpBlock" text="{i18n.SingleModuleHelpBlock}"/>
+                            <b:Heading text="{i18n.ProjectSettings}" size="H4"/>
 
-      <b:RadioButton name="moduleType" b:id="isMultiModule" ui:field="isMultiModuleRadioButton" text="{i18n.MultiModule}"/>
-      <b:HelpBlock ui:field="isMultiModuleRadioButtonHelpBlock" text="{i18n.MultiModuleHelpBlock}"/>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel for="projectNameTextBox" text="{i18n.ProjectName}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:TextBox b:id="projectName" ui:field="projectNameTextBox" placeholder="{i18n.ProjectNameHolder}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel>
-        <br/>
-        <strong>
-          <g:Label text="{i18n.ProjectBranches}"/>
-        </strong>
-      </b:FormLabel>
-      <b:CheckBox ui:field="isConfigureRepositoryCheckBox" text="{i18n.ConfigureBranches}"></b:CheckBox>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel ui:field="projectDescription" for="projectDescriptionTextBox" text="{i18n.ProjectDescription}"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:TextBox b:id="projectDescription" ui:field="projectDescriptionTextBox" placeholder="{i18n.ProjectDescriptionHolder}"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel>
-        <br/>
-        <strong>
-          <g:Label text="{i18n.ProjectSettings}"/>
-        </strong>
-      </b:FormLabel>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel for="groupIdTextBox" text="{i18n.ProjectGroup}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:TextBox b:id="groupId" ui:field="groupIdTextBox" placeholder="{i18n.ProjectGroupHolder}"/>
+                                    <b:HelpBlock ui:field="groupIdTextBoxHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel for="projectNameTextBox">
-        <span class="{style.mandatory-field}">*</span>
-        <ui:text from="{i18n.ProjectName}"/>
-        <!--g:Label ui:field="projectName" text="{i18n.ProjectName}"/-->
-      </b:FormLabel>
-      <b:TextBox b:id="projectName" ui:field="projectNameTextBox" placeholder="{i18n.ProjectNameHolder}"/>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel for="artifactIdTextBox" text="{i18n.ProjectArtifact}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:TextBox b:id="artifactId" ui:field="artifactIdTextBox" placeholder="{i18n.ProjectArtifactHolder}"/>
+                                    <b:HelpBlock ui:field="artifactIdTextBoxHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel for="projectDescriptionTextBox">
-        <g:Label ui:field="projectDescription" text="{i18n.ProjectDescription}"/>
-      </b:FormLabel>
-      <b:TextBox b:id="projectDescription" ui:field="projectDescriptionTextBox" placeholder="{i18n.ProjectDescriptionHolder}"/>
+                            <b:FormGroup>
+                                <b:Column size="MD_4">
+                                    <b:FormLabel for="versionTextBox" text="{i18n.ProjectVersion}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_8">
+                                    <b:TextBox b:id="version" ui:field="versionTextBox" placeholder="{i18n.ProjectVersionHolder}"/>
+                                    <b:HelpBlock ui:field="versionTextBoxHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-      <b:FormLabel for="groupIdTextBox">
-        <span class="{style.mandatory-field}">*</span>
-        <ui:text from="{i18n.ProjectGroup}"/>
-        <!--g:Label ui:field="groupId" text="{i18n.ProjectGroup}"/-->
-      </b:FormLabel>
-      <b:TextBox b:id="groupId" ui:field="groupIdTextBox" placeholder="{i18n.ProjectGroupHolder}"/>
-      <!--b:HelpBlock ui:field="groupIdTextBoxHelpBlock"/-->
+                        </b:FieldSet>
 
-      <b:FormLabel for="artifactIdTextBox">
-        <span class="{style.mandatory-field}">*</span>
-        <ui:text from="{i18n.ProjectArtifact}"/>
-        <!--g:Label ui:field="artifactId" text="{i18n.ProjectArtifact}"/-->
-      </b:FormLabel>
-      <b:TextBox b:id="artifactId" ui:field="artifactIdTextBox" placeholder="{i18n.ProjectArtifactHolder}"/>
-      <!--b:HelpBlock ui:field="artifactIdTextBoxHelpBlock"/-->
-
-      <b:FormLabel for="versionTextBox">
-        <span class="{style.mandatory-field}">*</span>
-        <ui:text from="{i18n.ProjectVersion}"/>
-        <!--g:Label ui:field="version" text="{i18n.ProjectVersion}"/-->
-      </b:FormLabel>
-      <b:TextBox b:id="version" ui:field="versionTextBox" placeholder="{i18n.ProjectVersionHolder}"/>
-      <!--b:HelpBlock ui:field="versionTextBoxHelpBlock"/-->
-
-    </b:FieldSet>
-
-  </b:Well>
+                    </b:Form>
+                </b:Column>
+            </b:Row>
+        </b:Container>
+    </g:HTMLPanel>
 
 </ui:UiBinder>

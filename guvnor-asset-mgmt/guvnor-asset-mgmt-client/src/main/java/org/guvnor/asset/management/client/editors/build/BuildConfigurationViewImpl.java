@@ -32,9 +32,9 @@ import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.CheckBox;
+import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.Input;
 import org.gwtbootstrap3.client.ui.ListBox;
-import org.gwtbootstrap3.client.ui.Row;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.workbench.events.NotificationEvent;
@@ -80,16 +80,16 @@ public class BuildConfigurationViewImpl extends Composite
     public CheckBox deployToRuntimeCheck;
 
     @UiField
-    public Row deployToRuntimeRow;
+    public FormGroup deployToRuntimeRow;
 
     @UiField
-    public Row usernameRow;
+    public FormGroup usernameRow;
 
     @UiField
-    public Row passwordRow;
+    public FormGroup passwordRow;
 
     @UiField
-    public Row serverURLRow;
+    public FormGroup serverURLRow;
 
     @Inject
     private Event<NotificationEvent> notification;

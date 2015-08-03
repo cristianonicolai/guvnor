@@ -22,6 +22,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.asset.management.client.i18n.Constants;
+import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.HelpBlock;
 import org.gwtbootstrap3.client.ui.Label;
 
@@ -55,8 +56,7 @@ public class RepositoryStructureDataViewImpl extends Composite
 
 
     @UiField
-    Label projectTypeLabel;
-
+    Heading projectTypeLabel;
 
     private Presenter presenter;
 

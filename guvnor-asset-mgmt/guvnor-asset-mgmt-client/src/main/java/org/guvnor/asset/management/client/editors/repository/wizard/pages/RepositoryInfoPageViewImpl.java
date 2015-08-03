@@ -28,7 +28,6 @@ import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
 import org.gwtbootstrap3.client.ui.CheckBox;
@@ -66,16 +65,10 @@ public class RepositoryInfoPageViewImpl extends Composite
     HelpBlock nameHelpBlock;
 
     @UiField
-    InlineHTML isOUMandatory;
-
-    @UiField
     FormGroup managedReposiotryGroup;
 
     @UiField
     CheckBox isManagedRepository;
-
-    @UiField
-    HelpBlock isManagedRepositoryHelpBlock;
 
     private String name;
 

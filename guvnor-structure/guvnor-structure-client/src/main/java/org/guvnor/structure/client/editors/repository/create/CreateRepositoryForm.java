@@ -24,7 +24,6 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
@@ -36,6 +35,7 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.editors.repository.RepositoryPreferences;
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
@@ -44,6 +44,7 @@ import org.guvnor.structure.repositories.Repository;
 import org.guvnor.structure.repositories.RepositoryAlreadyExistsException;
 import org.guvnor.structure.repositories.RepositoryService;
 import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.FormLabel;
 import org.gwtbootstrap3.client.ui.HelpBlock;
 import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
@@ -62,7 +63,7 @@ import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 import org.uberfire.mvp.impl.DefaultPlaceRequest;
 
 @Dependent
-public class CreateRepositoryForm extends BaseModal implements HasCloseHandlers<CreateRepositoryForm> {
+public class CreateRepositoryForm extends Composite implements HasCloseHandlers<CreateRepositoryForm> {
 
     interface CreateRepositoryFormBinder
             extends
@@ -100,7 +101,7 @@ public class CreateRepositoryForm extends BaseModal implements HasCloseHandlers<
     HelpBlock nameHelpBlock;
 
     @UiField
-    SpanElement isOUMandatory;
+    FormLabel ouLabel;
 
     @UiField
     BaseModal popup;
@@ -110,11 +111,9 @@ public class CreateRepositoryForm extends BaseModal implements HasCloseHandlers<
 
     @PostConstruct
     public void init() {
-        setBody( uiBinder.createAndBindUi( this ) );
+        initWidget( uiBinder.createAndBindUi( this ) );
 
-        if ( !isOUMandatory() ) {
-            isOUMandatory.removeFromParent();
-        }
+        ouLabel.setShowRequiredIndicator( isOUMandatory() );
 
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
@@ -157,6 +156,11 @@ public class CreateRepositoryForm extends BaseModal implements HasCloseHandlers<
         } catch ( IOCResolutionException exception ) {
         }
         return true;
+    }
+
+    @Override
+    public HandlerRegistration addCloseHandler( final CloseHandler<CreateRepositoryForm> handler ) {
+        return addHandler( handler, CloseEvent.getType() );
     }
 
     @UiHandler("create")
@@ -217,11 +221,6 @@ public class CreateRepositoryForm extends BaseModal implements HasCloseHandlers<
                 }
             } ).normalizeRepositoryName( nameTextBox.getText() );
         }
-    }
-
-    @Override
-    public HandlerRegistration addCloseHandler( CloseHandler<CreateRepositoryForm> handler ) {
-        return addHandler(handler, CloseEvent.getType());
     }
 
     @UiHandler("cancel")
