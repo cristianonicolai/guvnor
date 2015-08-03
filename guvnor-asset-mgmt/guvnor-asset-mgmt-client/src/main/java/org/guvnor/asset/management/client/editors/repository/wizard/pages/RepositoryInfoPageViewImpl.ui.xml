@@ -19,45 +19,47 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-  <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
+    <ui:with field="i18n" type="org.guvnor.asset.management.client.i18n.Constants"/>
 
-  <ui:style>
-    .mandatory-field {
-      color: red !important;
-    }
-  </ui:style>
+    <g:HTMLPanel>
+        <b:Container fluid="true">
+            <b:Row>
+                <b:Column size="MD_12">
+                    <b:Form type="HORIZONTAL">
+                        <b:FieldSet>
 
-  <g:HTMLPanel>
-    <b:Well>
-      <b:FieldSet>
+                            <b:FormGroup ui:field="nameGroup">
+                                <b:Column size="MD_5">
+                                    <b:FormLabel for="name" text="{i18n.RepoName}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_7">
+                                    <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="{i18n.RepoNameHolder}"/>
+                                    <b:HelpBlock ui:field="nameHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="nameGroup">
-          <b:FormLabel for="name">
-            <span class="{style.mandatory-field}">*</span>
-            <ui:text from="{i18n.RepoName}"/>
-          </b:FormLabel>
-          <b:TextBox b:id="name" ui:field="nameTextBox" placeholder="{i18n.RepoNameHolder}"/>
-          <b:HelpBlock ui:field="nameHelpBlock"/>
-        </b:FormGroup>
-        <b:FormGroup ui:field="organizationalUnitGroup">
-          <b:FormLabel for="ou" ui:field="ouLabel">
-            <span ui:field="isOUMandatory" class="{style.mandatory-field}">*</span>
-            <ui:text from="{i18n.OrganizationalUnit}"/>
-          </b:FormLabel>
-          <b:ListBox b:id="ou" ui:field="organizationalUnitDropdown"/>
-          <b:HelpBlock ui:field="organizationalUnitHelpBlock"/>
+                            <b:FormGroup ui:field="organizationalUnitGroup">
+                                <b:Column size="MD_5">
+                                    <b:FormLabel for="ou" text="{i18n.OrganizationalUnit}" showRequiredIndicator="true"/>
+                                </b:Column>
+                                <b:Column size="MD_7">
+                                    <b:ListBox b:id="ou" ui:field="organizationalUnitDropdown"/>
+                                    <b:HelpBlock ui:field="organizationalUnitHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        </b:FormGroup>
+                            <b:FormGroup ui:field="managedReposiotryGroup">
+                                <b:Column size="MD_12">
+                                    <b:CheckBox ui:field="isManagedRepository" text="{i18n.ManagedRepository}"/>
+                                    <b:HelpBlock ui:field="isManagedRepositoryHelpBlock"/>
+                                </b:Column>
+                            </b:FormGroup>
 
-        <b:FormGroup ui:field="managedReposiotryGroup">
+                        </b:FieldSet>
+                    </b:Form>
+                </b:Column>
+            </b:Row>
+        </b:Container>
 
-          <b:CheckBox ui:field="isManagedRepository" text="{i18n.ManagedRepository}"></b:CheckBox>
-          <b:HelpBlock ui:field="isManagedRepositoryHelpBlock" text="{i18n.ManagedRepositoryHelpInline}"/>
-
-        </b:FormGroup>
-
-      </b:FieldSet>
-    </b:Well>
-
-  </g:HTMLPanel>
+    </g:HTMLPanel>
 </ui:UiBinder>

@@ -16,6 +16,7 @@
 package org.guvnor.m2repo.client.widgets;
 
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Event;
 import javax.inject.Inject;
 
@@ -33,11 +34,12 @@ import org.uberfire.commons.validation.PortablePreconditions;
 import org.uberfire.paging.PageResponse;
 import org.uberfire.workbench.events.NotificationEvent;
 
+@Dependent
 public class ArtifactListPresenterImpl
         implements ArtifactListPresenter {
 
     @Inject
-    protected ArtifactListViewImpl view;
+    protected ArtifactListView view;
 
     @Inject
     private Caller<M2RepoService> m2RepoService;
@@ -75,7 +77,7 @@ public class ArtifactListPresenterImpl
         refresh();
     }
 
-    public ArtifactListViewImpl getView() {
+    public ArtifactListView getView() {
         return view;
     }
 
@@ -84,10 +86,10 @@ public class ArtifactListPresenterImpl
      */
     private static class RefreshableAsyncDataProvider extends AsyncDataProvider<JarListPageRow> {
 
-        private ArtifactListViewImpl view;
+        private ArtifactListView view;
         private Caller<M2RepoService> m2RepoService;
 
-        protected RefreshableAsyncDataProvider( final ArtifactListViewImpl view,
+        protected RefreshableAsyncDataProvider( final ArtifactListView view,
                                                 final Caller<M2RepoService> m2RepoService ) {
             this.view = PortablePreconditions.checkNotNull( "view",
                                                             view );

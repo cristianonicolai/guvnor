@@ -66,16 +66,10 @@ public class RepositoryInfoPageViewImpl extends Composite
     HelpBlock nameHelpBlock;
 
     @UiField
-    SpanElement isOUMandatory;
-
-    @UiField
     FormGroup managedReposiotryGroup;
 
     @UiField
     CheckBox isManagedRepository;
-
-    @UiField
-    HelpBlock isManagedRepositoryHelpBlock;
 
     private String name;
 

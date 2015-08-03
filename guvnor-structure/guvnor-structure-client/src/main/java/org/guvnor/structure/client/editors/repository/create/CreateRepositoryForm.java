@@ -45,6 +45,7 @@ import org.guvnor.structure.repositories.Repository;
 import org.guvnor.structure.repositories.RepositoryAlreadyExistsException;
 import org.guvnor.structure.repositories.RepositoryService;
 import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.FormLabel;
 import org.gwtbootstrap3.client.ui.HelpBlock;
 import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
@@ -63,9 +64,7 @@ import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 import org.uberfire.mvp.impl.DefaultPlaceRequest;
 
 @Dependent
-public class CreateRepositoryForm
-        extends Composite
-        implements HasCloseHandlers<CreateRepositoryForm> {
+public class CreateRepositoryForm extends Composite implements HasCloseHandlers<CreateRepositoryForm> {
 
     interface CreateRepositoryFormBinder
             extends
@@ -103,7 +102,7 @@ public class CreateRepositoryForm
     HelpBlock nameHelpBlock;
 
     @UiField
-    SpanElement isOUMandatory;
+    FormLabel ouLabel;
 
     @UiField
     BaseModal popup;
@@ -113,13 +112,9 @@ public class CreateRepositoryForm
 
     @PostConstruct
     public void init() {
-        mandatoryOU = isOUMandatory();
-
         initWidget( uiBinder.createAndBindUi( this ) );
 
-        if ( !mandatoryOU ) {
-            isOUMandatory.removeFromParent();
-        }
+        ouLabel.setShowRequiredIndicator( isOUMandatory() );
 
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override

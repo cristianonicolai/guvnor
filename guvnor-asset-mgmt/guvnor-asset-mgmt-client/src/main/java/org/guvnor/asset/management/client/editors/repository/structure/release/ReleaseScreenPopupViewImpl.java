@@ -15,6 +15,7 @@
 
 package org.guvnor.asset.management.client.editors.repository.structure.release;
 
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import com.google.gwt.core.client.GWT;
@@ -36,6 +37,7 @@ import org.jboss.errai.security.shared.api.identity.User;
 import org.uberfire.ext.widgets.common.client.common.popups.BaseModal;
 import org.uberfire.ext.widgets.common.client.common.popups.footers.ModalFooterOKCancelButtons;
 
+@Dependent
 public class ReleaseScreenPopupViewImpl extends BaseModal {
 
     interface ReleaseScreenPopupWidgetBinder
@@ -192,7 +194,7 @@ public class ReleaseScreenPopupViewImpl extends BaseModal {
         setFade( true );
         setRemoveOnHide( true );
 
-        add( uiBinder.createAndBindUi( this ) );
+        setBody( uiBinder.createAndBindUi( this ) );
         add( footer );
     }
 

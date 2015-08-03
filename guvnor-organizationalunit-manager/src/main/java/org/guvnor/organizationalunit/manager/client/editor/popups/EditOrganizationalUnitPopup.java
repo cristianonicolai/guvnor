@@ -17,7 +17,6 @@
 package org.guvnor.organizationalunit.manager.client.editor.popups;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.Command;
@@ -27,7 +26,6 @@ import org.guvnor.organizationalunit.manager.client.resources.i18n.Organizationa
 import org.guvnor.structure.organizationalunit.OrganizationalUnit;
 import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
 import org.jboss.errai.common.client.api.RemoteCallback;
@@ -60,9 +58,6 @@ public class EditOrganizationalUnitPopup extends BaseModal implements UberView<O
     @UiField
     HelpBlock defaultGroupIdHelpInline;
 
-    @UiField
-    Icon groupIdHelpIcon;
-
     private OrganizationalUnit organizationalUnit;
 
     private OrganizationalUnitManagerPresenter presenter;
@@ -87,11 +82,8 @@ public class EditOrganizationalUnitPopup extends BaseModal implements UberView<O
     public EditOrganizationalUnitPopup() {
         setTitle( OrganizationalUnitManagerConstants.INSTANCE.EditOrganizationalUnitPopupTitle() );
 
-        add( uiBinder.createAndBindUi( this ) );
+        setBody( uiBinder.createAndBindUi( this ) );
         add( footer );
-
-        groupIdHelpIcon.getElement().getStyle().setPaddingLeft( 5, Style.Unit.PX );
-        groupIdHelpIcon.getElement().getStyle().setCursor( Style.Cursor.POINTER );
     }
 
     @Override
