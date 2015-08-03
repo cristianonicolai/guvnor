@@ -49,8 +49,10 @@
                                     <b:CheckBox ui:field="isConfigureRepositoryCheckBox" text="{i18n.ConfigureBranches}"/>
                                 </b:Column>
                             </b:FormGroup>
+                        </b:FieldSet>
 
-                            <b:Heading text="{i18n.ProjectSettings}" size="H4"/>
+                        <b:FieldSet>
+                            <b:Legend text="{i18n.ProjectSettings}" />
 
                             <b:FormGroup>
                                 <b:Column size="MD_4">
