@@ -16,7 +16,6 @@
 package org.guvnor.common.services.project.client;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.KeyUpEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
@@ -26,7 +25,6 @@ import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.common.services.project.client.resources.ProjectResources;
 import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.Icon;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
 
@@ -51,15 +49,6 @@ public class GAVEditorViewImpl
     HelpBlock groupIdHelpBlock;
 
     @UiField
-    Icon gavHelpIcon;
-
-    @UiField
-    Icon gavHelpIcon2;
-
-    @UiField
-    Icon gavHelpIcon3;
-
-    @UiField
     FormGroup artifactIdGroup;
 
     @UiField
@@ -81,13 +70,6 @@ public class GAVEditorViewImpl
 
     public GAVEditorViewImpl() {
         initWidget( uiBinder.createAndBindUi( this ) );
-
-        gavHelpIcon.getElement().getStyle().setPaddingLeft( 10, Style.Unit.PX );
-        gavHelpIcon.getElement().getStyle().setCursor( Style.Cursor.POINTER );
-        gavHelpIcon2.getElement().getStyle().setPaddingLeft( 10, Style.Unit.PX );
-        gavHelpIcon2.getElement().getStyle().setCursor( Style.Cursor.POINTER );
-        gavHelpIcon3.getElement().getStyle().setPaddingLeft( 10, Style.Unit.PX );
-        gavHelpIcon3.getElement().getStyle().setCursor( Style.Cursor.POINTER );
     }
 
     @Override

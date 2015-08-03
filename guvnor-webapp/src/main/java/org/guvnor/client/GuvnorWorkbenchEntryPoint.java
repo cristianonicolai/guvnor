@@ -250,6 +250,14 @@ public class GuvnorWorkbenchEntryPoint {
                     }
                 } )
                 .endMenu()
+                .newTopLevelMenu( "Projects" )
+                .respondsWith( new Command() {
+                    @Override
+                    public void execute() {
+                        placeManager.goTo( new DefaultPlaceRequest( "ProjectsPerspective" ) );
+                    }
+                } )
+                .endMenu()
                 .newTopLevelMenu( AppConstants.INSTANCE.Logout() )
                 .respondsWith( new LogoutCommand() )
                 .position( MenuPosition.RIGHT )
