@@ -112,7 +112,7 @@ public class PromoteScreenPopupViewImpl extends BaseModal {
         setFade( true );
         setRemoveOnHide( true );
 
-        add( uiBinder.createAndBindUi( this ) );
+        setBody( uiBinder.createAndBindUi( this ) );
         add( footer );
     }
 

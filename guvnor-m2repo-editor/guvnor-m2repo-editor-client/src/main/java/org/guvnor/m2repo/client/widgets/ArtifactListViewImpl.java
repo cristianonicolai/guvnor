@@ -16,6 +16,7 @@
 package org.guvnor.m2repo.client.widgets;
 
 import java.util.Date;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import com.google.gwt.cell.client.DateCell;
@@ -34,20 +35,25 @@ import org.guvnor.m2repo.model.JarListPageRow;
 import org.guvnor.m2repo.service.M2RepoService;
 import org.gwtbootstrap3.client.ui.constants.ButtonSize;
 import org.gwtbootstrap3.client.ui.gwt.ButtonCell;
+import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
+import org.jboss.errai.common.client.api.ErrorCallback;
 import org.jboss.errai.common.client.api.RemoteCallback;
+import org.uberfire.client.workbench.widgets.common.ErrorPopupPresenter;
 import org.uberfire.ext.widgets.common.client.tables.PagedTable;
 
+@Dependent
 public class ArtifactListViewImpl extends Composite implements ArtifactListView {
 
-    private static final int PAGE_SIZE = 10;
-
-    protected final PagedTable<JarListPageRow> dataGrid = new PagedTable<JarListPageRow>( PAGE_SIZE );
+    protected final PagedTable<JarListPageRow> dataGrid = new PagedTable<JarListPageRow>();
 
     protected ArtifactListPresenter presenter;
 
     @Inject
     protected Caller<M2RepoService> m2RepoService;
+
+    @Inject
+    private ErrorPopupPresenter errorPopup;
 
     protected String currentFilter = "";
 
@@ -102,6 +108,12 @@ public class ArtifactListViewImpl extends Composite implements ArtifactListView 
                     public void callback( final String response ) {
                         JarDetailPopup popup = new JarDetailPopup( response );
                         popup.show();
+                    }
+                }, new ErrorCallback<Message>() {
+                    @Override
+                    public boolean error( Message message, Throwable throwable ) {
+                        errorPopup.showMessage( "Unexpected error encountered: " + throwable.getMessage() );
+                        return true;
                     }
                 } ).getPomText( row.getPath() );
             }

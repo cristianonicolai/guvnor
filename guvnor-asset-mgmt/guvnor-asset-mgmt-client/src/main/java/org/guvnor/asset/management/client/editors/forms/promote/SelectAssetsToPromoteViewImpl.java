@@ -91,9 +91,11 @@ public class SelectAssetsToPromoteViewImpl extends Composite implements SelectAs
 
     public SelectAssetsToPromoteViewImpl() {
 
-        filesInTheBranchList = new ListBox( true );
+        filesInTheBranchList = new ListBox();
+        filesInTheBranchList.setMultipleSelect( true );
 
-        filesToPromoteList = new ListBox( true );
+        filesToPromoteList = new ListBox();
+        filesToPromoteList.setMultipleSelect( true );
 
         initWidget( uiBinder.createAndBindUi( this ) );
 
@@ -129,10 +131,11 @@ public class SelectAssetsToPromoteViewImpl extends Composite implements SelectAs
         filesToPromoteList.addClickHandler( new ClickHandler() {
             @Override
             public void onClick( ClickEvent event ) {
-                int selectedIndex = filesToPromoteList.getSelectedIndex();
-                String value = filesToPromoteList.getValue( selectedIndex );
-                filesInTheBranchList.addItem( value );
-                filesToPromoteList.removeItem( selectedIndex );
+                if( filesToPromoteList.getSelectedIndex() != -1 ) {
+                    String value = filesToPromoteList.getSelectedValue();
+                    filesInTheBranchList.addItem( value );
+                    filesToPromoteList.removeItem( filesToPromoteList.getSelectedIndex() );
+                }
             }
         } );
 

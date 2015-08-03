@@ -19,12 +19,12 @@ import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 
+import com.google.gwt.cell.client.AbstractCell;
 import com.google.gwt.cell.client.Cell;
 import com.google.gwt.cell.client.FieldUpdater;
-import com.google.gwt.cell.client.ImageResourceCell;
 import com.google.gwt.cell.client.TextCell;
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Style;
-import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.safehtml.shared.SafeHtml;
 import com.google.gwt.safehtml.shared.SafeHtmlBuilder;
 import com.google.gwt.safehtml.shared.SafeHtmlUtils;
@@ -32,6 +32,7 @@ import com.google.gwt.user.cellview.client.Column;
 import com.google.gwt.user.client.ui.Composite;
 import org.guvnor.messageconsole.client.console.resources.MessageConsoleResources;
 import org.guvnor.messageconsole.events.SystemMessage;
+import org.gwtbootstrap3.client.ui.html.Span;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 import org.uberfire.ext.widgets.common.client.tables.SimpleTable;
@@ -142,18 +143,11 @@ public class MessageConsoleViewImpl extends Composite implements MessageConsoleV
     }
 
     private void addLevelColumn() {
-        Column<MessageConsoleServiceRow, ?> column = new Column<MessageConsoleServiceRow, ImageResource>( new ImageResourceCell() ) {
+        Column<MessageConsoleServiceRow, ?> column = new Column<MessageConsoleServiceRow, SystemMessage.Level>( new IconCell() ) {
+
             @Override
-            public ImageResource getValue( MessageConsoleServiceRow row ) {
-                switch ( row.getMessageLevel() ) {
-                    case ERROR:
-                        return MessageConsoleResources.INSTANCE.Error();
-                    case WARNING:
-                        return MessageConsoleResources.INSTANCE.Warning();
-                    case INFO:
-                    default:
-                        return MessageConsoleResources.INSTANCE.Information();
-                }
+            public SystemMessage.Level getValue( final MessageConsoleServiceRow row ) {
+                return row.getMessageLevel();
             }
 
             @Override
@@ -207,5 +201,30 @@ public class MessageConsoleViewImpl extends Composite implements MessageConsoleV
 
     private SafeHtml createDivEnd() {
         return SafeHtmlUtils.fromTrustedString( "</div>" );
+    }
+
+    private class IconCell extends AbstractCell<SystemMessage.Level> {
+
+        @Override
+        public void render( Context context, SystemMessage.Level level, SafeHtmlBuilder sb ) {
+            final Span icon = GWT.create( Span.class );
+            icon.addStyleName( "glyphicon" );
+            icon.addStyleName( getIconClass( level ) );
+            sb.appendHtmlConstant( icon.getElement().getString());
+        }
+
+
+        private String getIconClass( final SystemMessage.Level level ){
+            switch ( level ) {
+                case ERROR:
+                    return "pficon-error-circle-o";
+                case WARNING:
+                    return "pficon-warning-triangle-o";
+                case INFO:
+                default:
+                    return "pficon-info";
+            }
+        }
+
     }
 }

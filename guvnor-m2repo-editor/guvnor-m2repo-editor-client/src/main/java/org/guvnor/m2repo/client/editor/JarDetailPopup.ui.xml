@@ -19,20 +19,7 @@
              xmlns:g="urn:import:com.google.gwt.user.client.ui"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-  <ui:with field="resources" type="org.guvnor.m2repo.client.resources.M2RepoEditorResources"/>
-  <ui:with field="i18n" type="org.guvnor.m2repo.client.resources.i18n.M2RepoEditorConstants"/>
-
-  <b:Well>
-    <g:HorizontalPanel>
-      <g:Image resource="{resources.images.modelLarge}"></g:Image>
-      <g:Label text="{i18n.JarDetails}" styleName="{resources.CSS.caption}"/>
-    </g:HorizontalPanel>
-    <g:HTMLPanel>
-      <hr/>
-    </g:HTMLPanel>
-    <g:ScrollPanel width="100%" height="200px">
-      <g:HTML ui:field="pom" styleName="{resources.CSS.pom}"/>
-    </g:ScrollPanel>
-  </b:Well>
-
+    <g:FlowPanel>
+        <b:Pre addStyleNames="prettyprint lang-xml" ui:field="pom" />
+    </g:FlowPanel>
 </ui:UiBinder>
