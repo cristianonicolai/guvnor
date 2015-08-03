@@ -25,15 +25,16 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Anchor;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.repositories.PublicURI;
 import org.guvnor.structure.repositories.Repository;
 import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Heading;
+import org.gwtbootstrap3.client.ui.InputGroupAddon;
 import org.gwtbootstrap3.client.ui.ListBox;
+import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.client.ui.html.Paragraph;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 
 public class RepositoriesViewItem extends Composite {
@@ -47,22 +48,19 @@ public class RepositoriesViewItem extends Composite {
     private static RepositoriesViewItemBinder uiBinder = GWT.create( RepositoriesViewItemBinder.class );
 
     @UiField
-    public InlineHTML ownerReference;
+    public Heading repoName;
 
     @UiField
-    public InlineHTML repoName;
+    public Paragraph repoDesc;
 
     @UiField
-    public InlineHTML repoDesc;
+    public TextBox gitDaemonURI;
 
     @UiField
-    public InlineHTML gitDaemonURI;
+    public InputGroupAddon myGitCopyButton;
 
     @UiField
-    public Button myGitCopyButton;
-
-    @UiField
-    public FlowPanel linksPanel;
+    public Paragraph linksPanel;
 
     @UiField
     public ListBox branchesDropdown;
@@ -84,23 +82,22 @@ public class RepositoriesViewItem extends Composite {
         this.cmdRemoveRepository = cmdRemoveRepository;
         this.cmdUpdateRepository = cmdUpdateRepository;
         if ( owner != null && !owner.isEmpty() ) {
-            ownerReference.setText( owner + " / " );
+            repoName.setText( owner + " / " + repositoryName );
+        } else {
+            repoName.setText( repositoryName );
         }
-        repoName.setText( repositoryName );
         repoDesc.setText( description );
         int count = 0;
         if ( publicURIs.size() > 0 ) {
-            linksPanel.add( new InlineHTML() {{
-                setText( CoreConstants.INSTANCE.AvailableProtocols() );
-                getElement().getStyle().setPaddingLeft( 10, Style.Unit.PX );
-            }} );
+            linksPanel.setText( CoreConstants.INSTANCE.AvailableProtocols() );
         }
         for ( final PublicURI publicURI : publicURIs ) {
             if ( count == 0 ) {
                 gitDaemonURI.setText( publicURI.getURI() );
             }
             final String protocol = publicURI.getProtocol() == null ? "default" : publicURI.getProtocol();
-            final Anchor anchor = new Anchor( protocol );
+            final Button anchor = new Button( protocol );
+            anchor.getElement().getStyle().setMarginLeft( 5, Style.Unit.PX );
             anchor.addClickHandler( new ClickHandler() {
                 @Override
                 public void onClick( ClickEvent event ) {

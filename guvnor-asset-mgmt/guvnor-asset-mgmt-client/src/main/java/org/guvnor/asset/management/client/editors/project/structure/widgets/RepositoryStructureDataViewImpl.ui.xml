@@ -5,9 +5,9 @@
   <ui:with field="i18n"
            type="org.guvnor.asset.management.client.i18n.Constants"/>
 
-  <b:Well>
     <b:FieldSet>
-      <b:Legend ui:field="projectTypeLabel"/>
+
+      <b:Heading ui:field="projectTypeLabel" size="H4"/>
 
       <b:HelpBlock ui:field="groupIdTextBoxHelpInline"/>
       <b:Label ui:field="groupIdTextBox"/>
@@ -19,8 +19,5 @@
       <b:Label ui:field="versionTextBox"/>
 
     </b:FieldSet>
-
-
-  </b:Well>
 
 </ui:UiBinder>

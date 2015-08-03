@@ -20,71 +20,76 @@
              xmlns:gwt='urn:import:com.google.gwt.user.client.ui'
              xmlns:b='urn:import:org.gwtbootstrap3.client.ui'>
 
-  <ui:with field="i18n"
-           type="org.guvnor.common.services.project.client.resources.i18n.ProjectConstants"/>
-  <ui:with field="resources"
-           type="org.guvnor.common.services.project.client.resources.ProjectResources"/>
+    <ui:with field="i18n"
+             type="org.guvnor.common.services.project.client.resources.i18n.ProjectConstants"/>
+    <ui:with field="resources"
+             type="org.guvnor.common.services.project.client.resources.ProjectResources"/>
 
-  <gwt:HTMLPanel>
-    <b:Row>
-      <b:FormGroup ui:field="groupIdGroup">
-        <b:Column size="MD_2">
-          <b:FormLabel for="groupIdTextBox">
-            <ui:text from="{i18n.GroupID}"/>
-          </b:FormLabel>
-        </b:Column>
-        <b:Column size="MD_4">
-          <b:TextBox ui:field="groupIdTextBox" placeholder="{i18n.EnterAGroupID}"/>
-          <b:HelpBlock ui:field="groupIdHelpBlock"/>
-        </b:Column>
-        <b:Column size="MD_6">
-          <b:HelpBlock text="{i18n.GroupIdExample}"/>
-          <b:Popover placement="LEFT" trigger="HOVER" title="{i18n.MoreInfo}" content="{i18n.GroupIdMoreInfo}">
-            <b:Icon ui:field="gavHelpIcon" type="QUESTION"/>
-          </b:Popover>
-        </b:Column>
-      </b:FormGroup>
-    </b:Row>
+    <ui:style>
 
-    <b:Row>
-      <b:FormGroup ui:field="artifactIdGroup">
-        <b:Column size="MD_2">
-          <b:FormLabel for="artifactIdTextBox">
-            <ui:text from="{i18n.ArtifactID}"/>
-          </b:FormLabel>
-        </b:Column>
-        <b:Column size="MD_4">
-          <b:TextBox ui:field="artifactIdTextBox" placeholder="{i18n.EnterAnArtifactID}"/>
-          <b:HelpBlock ui:field="artifactIdHelpBlock"/>
-        </b:Column>
-        <b:Column size="MD_6">
-          <b:HelpBlock text="{i18n.ArtifactIDExample}"/>
-          <b:Popover placement="LEFT" trigger="HOVER" title="{i18n.MoreInfo}" content="{i18n.ArtifactIDMoreInfo}">
-            <b:Icon ui:field="gavHelpIcon2" type="QUESTION"/>
-          </b:Popover>
-        </b:Column>
-      </b:FormGroup>
-    </b:Row>
+        .help-icon:hover {
+            cursor: pointer;
+        }
 
-    <b:Row>
-      <b:FormGroup ui:field="versionGroup">
-        <b:Column size="MD_2">
-          <b:FormLabel for="versionTextBox">
-            <ui:text from="{i18n.Version}"/>
-          </b:FormLabel>
-        </b:Column>
-        <b:Column size="MD_4">
-          <b:TextBox ui:field="versionTextBox" placeholder="{i18n.EnterAVersion}"/>
-          <b:HelpBlock ui:field="versionHelpBlock"/>
-        </b:Column>
-        <b:Column size="MD_6">
-          <b:HelpBlock text="{i18n.VersionExample}"/>
-          <b:Popover placement="LEFT" trigger="HOVER" title="{i18n.MoreInfo}" content="{i18n.VersionMoreInfo}">
-            <b:Icon ui:field="gavHelpIcon3" type="QUESTION"/>
-          </b:Popover>
-        </b:Column>
-      </b:FormGroup>
-    </b:Row>
-  </gwt:HTMLPanel>
+    </ui:style>
+
+    <gwt:HTMLPanel>
+        <b:Form type="HORIZONTAL">
+            <b:FormGroup ui:field="groupIdGroup">
+                <b:Column size="MD_2">
+                    <b:FormLabel for="groupIdTextBox" text="{i18n.GroupID}"/>
+                </b:Column>
+                <b:Column size="MD_4">
+                    <b:InputGroup>
+                        <b:TextBox ui:field="groupIdTextBox" placeholder="{i18n.EnterAGroupID}"/>
+                        <b:Popover placement="LEFT" container="body" title="{i18n.MoreInfo}" content="{i18n.GroupIdMoreInfo}">
+                            <b:InputGroupAddon icon="QUESTION" addStyleNames="{style.help-icon}"/>
+                        </b:Popover>
+                    </b:InputGroup>
+                    <b:HelpBlock ui:field="groupIdHelpBlock"/>
+                </b:Column>
+                <b:Column size="MD_6">
+                    <b:HelpBlock text="{i18n.GroupIdExample}"/>
+                </b:Column>
+            </b:FormGroup>
+
+            <b:FormGroup ui:field="artifactIdGroup">
+                <b:Column size="MD_2">
+                    <b:FormLabel for="artifactIdTextBox" text="{i18n.ArtifactID}"/>
+                </b:Column>
+                <b:Column size="MD_4">
+                    <b:InputGroup>
+                        <b:TextBox ui:field="artifactIdTextBox" placeholder="{i18n.EnterAnArtifactID}"/>
+                        <b:Popover placement="LEFT" container="body" title="{i18n.MoreInfo}" content="{i18n.ArtifactIDMoreInfo}">
+                            <b:InputGroupAddon icon="QUESTION" addStyleNames="{style.help-icon}"/>
+                        </b:Popover>
+                    </b:InputGroup>
+                    <b:HelpBlock ui:field="artifactIdHelpBlock"/>
+                </b:Column>
+                <b:Column size="MD_6">
+                    <b:HelpBlock text="{i18n.ArtifactIDExample}"/>
+                </b:Column>
+            </b:FormGroup>
+
+            <b:FormGroup ui:field="versionGroup">
+                <b:Column size="MD_2">
+                    <b:FormLabel for="versionTextBox" text="{i18n.Version}"/>
+                </b:Column>
+                <b:Column size="MD_4">
+                    <b:InputGroup>
+                        <b:TextBox ui:field="versionTextBox" placeholder="{i18n.EnterAVersion}"/>
+                        <b:Popover placement="LEFT" container="body" title="{i18n.MoreInfo}" content="{i18n.VersionMoreInfo}">
+                            <b:InputGroupAddon icon="QUESTION" addStyleNames="{style.help-icon}"/>
+                        </b:Popover>
+                    </b:InputGroup>
+                    <b:HelpBlock ui:field="versionHelpBlock"/>
+                </b:Column>
+                <b:Column size="MD_6">
+                    <b:HelpBlock text="{i18n.VersionExample}"/>
+                </b:Column>
+            </b:FormGroup>
+
+        </b:Form>
+    </gwt:HTMLPanel>
 
 </ui:UiBinder>

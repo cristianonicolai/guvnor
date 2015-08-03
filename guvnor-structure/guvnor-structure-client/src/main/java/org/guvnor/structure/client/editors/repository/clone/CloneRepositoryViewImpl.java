@@ -23,11 +23,14 @@ import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
+import com.google.gwt.event.logical.shared.CloseEvent;
+import com.google.gwt.event.logical.shared.CloseHandler;
+import com.google.gwt.event.logical.shared.HasCloseHandlers;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.resources.i18n.CommonConstants;
 import org.gwtbootstrap3.client.ui.Button;
@@ -43,8 +46,7 @@ import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 
 @Dependent
-public class CloneRepositoryViewImpl
-        extends BaseModal implements CloneRepositoryView {
+public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositoryView, HasCloseHandlers<CloneRepositoryViewImpl> {
 
     interface CloneRepositoryFormBinder
             extends
@@ -117,7 +119,7 @@ public class CloneRepositoryViewImpl
                       final boolean isOuMandatory ) {
         this.presenter = presenter;
 
-        add( uiBinder.createAndBindUi( this ) );
+        setBody( uiBinder.createAndBindUi( this ) );
         setTitle( CoreConstants.INSTANCE.CloneRepository() );
 
         if ( !isOuMandatory ) {
@@ -269,7 +271,7 @@ public class CloneRepositoryViewImpl
 
     @Override
     public void setPopupCloseVisible( final boolean closeVisible ) {
-        setClosable( closeVisible );
+        setPopupCloseVisible( closeVisible );
     }
 
     @Override
@@ -307,4 +309,19 @@ public class CloneRepositoryViewImpl
         ErrorPopup.showMessage( CoreConstants.INSTANCE.CantLoadOrganizationalUnits() + " \n" + cause.getMessage() );
     }
 
+    @Override
+    public HandlerRegistration addCloseHandler( CloseHandler<CloneRepositoryViewImpl> handler ) {
+        return addHandler(handler, CloseEvent.getType());
+    }
+
+    @Override
+    public void show() {
+        popup.show();
+    }
+
+    @Override
+    public void hide() {
+        popup.hide();
+        CloseEvent.fire( this, this );
+    }
 }
