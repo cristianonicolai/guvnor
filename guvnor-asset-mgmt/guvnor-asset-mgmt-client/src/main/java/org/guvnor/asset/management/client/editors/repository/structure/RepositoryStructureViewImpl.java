@@ -15,7 +15,7 @@
  */
 package org.guvnor.asset.management.client.editors.repository.structure;
 
-import javax.enterprise.context.ApplicationScoped;
+import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import com.google.gwt.core.client.GWT;
@@ -34,7 +34,7 @@ import org.guvnor.common.services.project.model.Project;
 import org.gwtbootstrap3.client.ui.Row;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 
-@ApplicationScoped
+@Dependent
 public class RepositoryStructureViewImpl
         extends Composite
         implements RepositoryStructureView {
@@ -52,13 +52,13 @@ public class RepositoryStructureViewImpl
     @UiField
     Row dataViewContainer;
 
-    @UiField(provided = true)
+    @UiField( provided = true )
     RepositoryStructureDataView dataView;
 
     @UiField
     Row modulesViewContainer;
 
-    @UiField(provided = true)
+    @UiField( provided = true )
     ProjectModulesView modulesView;
 
     @Inject
