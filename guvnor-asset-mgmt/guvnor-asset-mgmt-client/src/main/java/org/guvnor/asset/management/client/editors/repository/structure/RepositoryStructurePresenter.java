@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.enterprise.context.Dependent;
 import javax.enterprise.event.Event;
 import javax.enterprise.event.Observes;
 import javax.inject.Inject;
@@ -81,6 +82,7 @@ import org.uberfire.workbench.model.menu.Menus;
 import static org.guvnor.asset.management.security.AssetsMgmtFeatures.*;
 import static org.uberfire.ext.widgets.common.client.common.ConcurrentChangePopup.*;
 
+@Dependent
 @WorkbenchScreen(identifier = "repositoryStructureScreen")
 public class RepositoryStructurePresenter
         implements RepositoryStructureView.Presenter,

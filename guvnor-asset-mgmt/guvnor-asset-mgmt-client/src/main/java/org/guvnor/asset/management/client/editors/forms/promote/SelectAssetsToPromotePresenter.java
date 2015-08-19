@@ -15,7 +15,6 @@
  */
 package org.guvnor.asset.management.client.editors.forms.promote;
 
-import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
@@ -29,26 +28,25 @@ import org.uberfire.client.annotations.WorkbenchPartView;
 import org.uberfire.client.annotations.WorkbenchScreen;
 import org.uberfire.client.mvp.PlaceManager;
 import org.uberfire.client.mvp.UberView;
-import org.uberfire.lifecycle.OnOpen;
 import org.uberfire.lifecycle.OnStartup;
 import org.uberfire.mvp.PlaceRequest;
 
 @Dependent
-@WorkbenchScreen(identifier = "SelectAssetsToPromote Form")
-public class SelectAssetsToPromotePresenter  {
+@WorkbenchScreen( identifier = "SelectAssetsToPromote Form" )
+public class SelectAssetsToPromotePresenter {
 
-    private Constants constants = GWT.create(Constants.class);
+    private Constants constants = GWT.create( Constants.class );
 
     public interface SelectAssetsToPromoteView extends UberView<SelectAssetsToPromotePresenter> {
 
-        void displayNotification(String text);
+        void displayNotification( String text );
 
         TextBox getSourceBranchBox();
-        
+
         ListBox getFilesInTheBranchList();
 
         ListBox getFilesToPromoteList();
-        
+
         CheckBox getRequiresReviewCheckBox();
     }
 
@@ -61,11 +59,9 @@ public class SelectAssetsToPromotePresenter  {
     private PlaceManager placeManager;
 
     @OnStartup
-    public void onStartup(final PlaceRequest place) {
+    public void onStartup( final PlaceRequest place ) {
         this.place = place;
     }
-    
-   
 
     @WorkbenchPartTitle
     public String getTitle() {
@@ -75,19 +71,6 @@ public class SelectAssetsToPromotePresenter  {
     @WorkbenchPartView
     public UberView<SelectAssetsToPromotePresenter> getView() {
         return view;
-    }
-
-    public SelectAssetsToPromotePresenter() {
-    }
-
-    @PostConstruct
-    public void init() {
-    }
-
-    @OnOpen
-    public void onOpen() {
-        
-
     }
 
 }
