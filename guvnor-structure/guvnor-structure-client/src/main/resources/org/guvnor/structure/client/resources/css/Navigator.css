@@ -7,7 +7,6 @@
 }
 
 .navigator td {
-    background: #f8f8f8;
     color: #484848;
     border-bottom: 1px solid #eee;
     padding: 7px 3px;
@@ -42,6 +41,5 @@
 
 .tree-nav {
     padding: 10px 15px 15px 15px;
-    background-color: #f8f8f8;
     border: 1px solid #eee;
 }
