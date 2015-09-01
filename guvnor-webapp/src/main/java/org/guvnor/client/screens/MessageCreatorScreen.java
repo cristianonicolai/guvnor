@@ -27,6 +27,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.FlowPanel;
+import org.guvnor.common.services.shared.message.Level;
 import org.guvnor.messageconsole.events.PublishMessagesEvent;
 import org.guvnor.messageconsole.events.SystemMessage;
 import org.gwtbootstrap3.client.ui.Button;
@@ -49,9 +50,9 @@ public class MessageCreatorScreen extends Composite {
     @PostConstruct
     public void init() {
         final ButtonGroup btnGroup = new ButtonGroup();
-        btnGroup.add( newMessageButton( SystemMessage.Level.INFO ) );
-        btnGroup.add( newMessageButton( SystemMessage.Level.ERROR ) );
-        btnGroup.add( newMessageButton( SystemMessage.Level.WARNING ) );
+        btnGroup.add( newMessageButton( Level.INFO ) );
+        btnGroup.add( newMessageButton( Level.ERROR ) );
+        btnGroup.add( newMessageButton( Level.WARNING ) );
 
         panel.add( btnGroup );
         initWidget( panel );
@@ -62,7 +63,7 @@ public class MessageCreatorScreen extends Composite {
         return "Messages";
     }
 
-    private Button newMessageButton( final SystemMessage.Level level ){
+    private Button newMessageButton( final Level level ){
         final Button add = new Button( level.name() + " message" );
         add.setIcon( IconType.PLUS );
         add.addClickHandler( new NewMessageClickHandler( level ) );
@@ -72,9 +73,9 @@ public class MessageCreatorScreen extends Composite {
 
     private class NewMessageClickHandler implements ClickHandler {
 
-        private SystemMessage.Level level;
+        private Level level;
 
-        public NewMessageClickHandler( final SystemMessage.Level level ) {
+        public NewMessageClickHandler( final Level level ) {
             this.level = level;
         }
 
