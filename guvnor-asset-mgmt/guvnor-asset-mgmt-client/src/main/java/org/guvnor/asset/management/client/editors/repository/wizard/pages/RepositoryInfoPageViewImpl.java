@@ -19,7 +19,6 @@ package org.guvnor.asset.management.client.editors.repository.wizard.pages;
 import java.util.Collection;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.KeyUpEvent;
@@ -34,8 +33,9 @@ import org.guvnor.structure.organizationalunit.OrganizationalUnit;
 import org.gwtbootstrap3.client.ui.CheckBox;
 import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
+import org.gwtbootstrap3.extras.select.client.ui.Option;
+import org.gwtbootstrap3.extras.select.client.ui.Select;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 
 public class RepositoryInfoPageViewImpl extends Composite
@@ -54,7 +54,7 @@ public class RepositoryInfoPageViewImpl extends Composite
     HelpBlock organizationalUnitHelpBlock;
 
     @UiField
-    ListBox organizationalUnitDropdown;
+    Select organizationalUnitDropdown;
 
     @UiField
     FormGroup nameGroup;
@@ -123,14 +123,20 @@ public class RepositoryInfoPageViewImpl extends Composite
     @Override
     public void initOrganizationalUnits( Collection<OrganizationalUnit> organizationalUnits ) {
 
-        organizationalUnitDropdown.addItem( CoreConstants.INSTANCE.SelectEntry(), NOT_SELECTED );
+        final Option select = new Option();
+        select.setText( CoreConstants.INSTANCE.SelectEntry() );
+        select.setValue( NOT_SELECTED );
+        organizationalUnitDropdown.add( select );
         if ( organizationalUnits != null && !organizationalUnits.isEmpty() ) {
             for ( OrganizationalUnit organizationalUnit : organizationalUnits ) {
-                organizationalUnitDropdown.addItem( organizationalUnit.getName(),
-                                                    organizationalUnit.getName() );
+                final Option option = new Option();
+                option.setText( organizationalUnit.getName() );
+                option.setValue( organizationalUnit.getName() );
+                organizationalUnitDropdown.add( option );
 
             }
         }
+        organizationalUnitDropdown.refresh();
     }
 
     @Override
@@ -155,7 +161,7 @@ public class RepositoryInfoPageViewImpl extends Composite
         organizationalUnitDropdown.addChangeHandler( new ChangeHandler() {
             @Override
             public void onChange( ChangeEvent event ) {
-                organizationalUnitName = organizationalUnitDropdown.getSelectedValue();
+                organizationalUnitName = organizationalUnitDropdown.getValue();
                 presenter.stateChanged();
             }
         } );

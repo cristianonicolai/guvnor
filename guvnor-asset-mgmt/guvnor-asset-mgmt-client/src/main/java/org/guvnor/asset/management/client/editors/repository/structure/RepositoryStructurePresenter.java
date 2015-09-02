@@ -594,7 +594,7 @@ public class RepositoryStructurePresenter
                                                                                       },
                                                                                       CommonConstants.INSTANCE.YES(),
                                                                                       ButtonType.DANGER,
-                                                                                      IconType.MINUS,
+                                                                                      IconType.TRASH,
                                                                                       new Command() {
                                                                                           @Override
                                                                                           public void execute() {

@@ -47,7 +47,6 @@ import org.uberfire.client.mvp.PlaceManager;
 import static org.junit.Assert.*;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyBoolean;
-import static org.mockito.Matchers.anyInt;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -115,7 +114,7 @@ public class CloneRepositoryFormTest {
 
         when( view.isNameEmpty() ).thenReturn( false );
         when( view.getName() ).thenReturn( REPO_NAME );
-        when( view.getOrganizationalUnit( any( Integer.class ) ) ).thenReturn( ORG_UNIT_ONE );
+        when( view.getSelectedOrganizationalUnit() ).thenReturn( ORG_UNIT_ONE );
         when( view.getUsername() ).thenReturn( USERNAME );
         when( view.getPassword() ).thenReturn( PASSWORD );
 
@@ -177,7 +176,7 @@ public class CloneRepositoryFormTest {
     public void testComponentsNonLockOuMandatory() {
         when( view.isGitUrlEmpty() ).thenReturn( false );
         when( view.getGitUrl() ).thenReturn( REPO_URL );
-        when( view.getOrganizationalUnit( any( Integer.class ) ) ).thenReturn( "non_existing" );
+        when( view.getSelectedOrganizationalUnit() ).thenReturn( "non_existing" );
         when( repositoryPreferences.isOUMandatory() ).thenReturn( true );
 
         presenter.handleCloneClick();
@@ -291,7 +290,7 @@ public class CloneRepositoryFormTest {
         when( view.isGitUrlEmpty() ).thenReturn( false );
         when( view.getGitUrl() ).thenReturn( REPO_URL );
         when( view.getName() ).thenReturn( REPO_NAME );
-        when( view.getOrganizationalUnit( anyInt() ) ).thenReturn( "" );
+        when( view.getSelectedOrganizationalUnit() ).thenReturn( "" );
 
         presenter = new CloneRepositoryPresenter( repositoryPreferences, view, repoServiceCaller, ouServiceCaller, placeManager );
         presenter.handleCloneClick();
@@ -307,7 +306,7 @@ public class CloneRepositoryFormTest {
         when( view.isGitUrlEmpty() ).thenReturn( true );
         when( view.getGitUrl() ).thenReturn( "" );
         when( view.getName() ).thenReturn( REPO_NAME );
-        when( view.getOrganizationalUnit( anyInt() ) ).thenReturn( ORG_UNIT_ONE );
+        when( view.getSelectedOrganizationalUnit() ).thenReturn( ORG_UNIT_ONE );
 
         presenter = new CloneRepositoryPresenter( repositoryPreferences, view, repoServiceCaller, ouServiceCaller, placeManager );
         presenter.handleCloneClick();
