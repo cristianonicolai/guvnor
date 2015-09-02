@@ -36,9 +36,7 @@
                             </bootstrap:Legend>
 
                             <bootstrap:FormGroup>
-                                <bootstrap:Column size="MD_2">
-                                    <bootstrap:FormLabel text="{i18n.ProjectName}"/>
-                                </bootstrap:Column>
+                                <bootstrap:FormLabel text="{i18n.ProjectName}" addStyleNames="col-md-2"/>
                                 <bootstrap:Column size="MD_4">
                                     <bootstrap:TextBox ui:field="pomNameTextBox" placeholder="{i18n.ProjectNamePlaceHolder}"/>
                                 </bootstrap:Column>
@@ -46,9 +44,7 @@
 
 
                             <bootstrap:FormGroup>
-                                <bootstrap:Column size="MD_2">
-                                    <bootstrap:FormLabel text="{i18n.ProjectDescription}"/>
-                                </bootstrap:Column>
+                                <bootstrap:FormLabel text="{i18n.ProjectDescription}" addStyleNames="col-md-2"/>
                                 <bootstrap:Column size="MD_4">
                                     <bootstrap:TextArea ui:field="pomDescriptionTextArea" placeholder="{i18n.ProjectDescriptionPlaceHolder}"/>
                                 </bootstrap:Column>

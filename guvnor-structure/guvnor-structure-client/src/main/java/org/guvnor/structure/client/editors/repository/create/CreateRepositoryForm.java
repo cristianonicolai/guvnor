@@ -24,7 +24,6 @@ import javax.enterprise.context.Dependent;
 import javax.inject.Inject;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
@@ -47,9 +46,10 @@ import org.guvnor.structure.repositories.RepositoryService;
 import org.gwtbootstrap3.client.ui.FormGroup;
 import org.gwtbootstrap3.client.ui.FormLabel;
 import org.gwtbootstrap3.client.ui.HelpBlock;
-import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
+import org.gwtbootstrap3.extras.select.client.ui.Option;
+import org.gwtbootstrap3.extras.select.client.ui.Select;
 import org.jboss.errai.bus.client.api.messaging.Message;
 import org.jboss.errai.common.client.api.Caller;
 import org.jboss.errai.common.client.api.ErrorCallback;
@@ -90,7 +90,7 @@ public class CreateRepositoryForm extends Composite implements HasCloseHandlers<
     HelpBlock organizationalUnitHelpBlock;
 
     @UiField
-    ListBox organizationalUnitDropdown;
+    Select organizationalUnitDropdown;
 
     @UiField
     FormGroup nameGroup;
@@ -112,6 +112,7 @@ public class CreateRepositoryForm extends Composite implements HasCloseHandlers<
 
     @PostConstruct
     public void init() {
+        GWT.log( "create repo" );
         initWidget( uiBinder.createAndBindUi( this ) );
 
         ouLabel.setShowRequiredIndicator( isOUMandatory() );
@@ -127,15 +128,20 @@ public class CreateRepositoryForm extends Composite implements HasCloseHandlers<
         organizationalUnitService.call( new RemoteCallback<Collection<OrganizationalUnit>>() {
                                             @Override
                                             public void callback( Collection<OrganizationalUnit> organizationalUnits ) {
-                                                organizationalUnitDropdown.addItem( CoreConstants.INSTANCE.SelectEntry() );
+                                                final Option select = new Option();
+                                                select.setText( CoreConstants.INSTANCE.SelectEntry() );
+                                                organizationalUnitDropdown.add( select );
                                                 if ( organizationalUnits != null && !organizationalUnits.isEmpty() ) {
                                                     for ( OrganizationalUnit organizationalUnit : organizationalUnits ) {
-                                                        organizationalUnitDropdown.addItem( organizationalUnit.getName(),
-                                                                                            organizationalUnit.getName() );
+                                                        final Option option = new Option();
+                                                        option.setText( organizationalUnit.getName() );
+                                                        option.setValue( organizationalUnit.getName() );
+                                                        organizationalUnitDropdown.add( option );
                                                         availableOrganizationalUnits.put( organizationalUnit.getName(),
                                                                                           organizationalUnit );
                                                     }
                                                 }
+                                                organizationalUnitDropdown.refresh();
                                             }
                                         },
                                         new ErrorCallback<Message>() {
@@ -167,7 +173,7 @@ public class CreateRepositoryForm extends Composite implements HasCloseHandlers<
     @UiHandler("create")
     public void onCreateClick( final ClickEvent e ) {
 
-        final String organizationalUnit = organizationalUnitDropdown.getValue( organizationalUnitDropdown.getSelectedIndex() );
+        final String organizationalUnit = organizationalUnitDropdown.getValue();
         if ( mandatoryOU && !availableOrganizationalUnits.containsKey( organizationalUnit ) ) {
             organizationalUnitGroup.setValidationState( ValidationState.ERROR );
             organizationalUnitHelpBlock.setText( CoreConstants.INSTANCE.OrganizationalUnitMandatory() );

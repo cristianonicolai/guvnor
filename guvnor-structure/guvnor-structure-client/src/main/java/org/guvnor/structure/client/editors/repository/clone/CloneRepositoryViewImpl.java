@@ -19,7 +19,6 @@ package org.guvnor.structure.client.editors.repository.clone;
 import javax.enterprise.context.Dependent;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.KeyPressEvent;
 import com.google.gwt.event.dom.client.KeyPressHandler;
@@ -35,11 +34,13 @@ import com.google.gwt.user.client.ui.Widget;
 import org.guvnor.structure.client.resources.i18n.CommonConstants;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.FormGroup;
+import org.gwtbootstrap3.client.ui.FormLabel;
 import org.gwtbootstrap3.client.ui.HelpBlock;
 import org.gwtbootstrap3.client.ui.Input;
-import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.ValidationState;
+import org.gwtbootstrap3.extras.select.client.ui.Option;
+import org.gwtbootstrap3.extras.select.client.ui.Select;
 import org.uberfire.ext.widgets.common.client.common.BusyPopup;
 import org.uberfire.ext.widgets.common.client.common.popups.BaseModal;
 import org.uberfire.ext.widgets.common.client.common.popups.errors.ErrorPopup;
@@ -69,7 +70,7 @@ public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositor
     FormGroup organizationalUnitGroup;
 
     @UiField
-    ListBox organizationalUnitDropdown;
+    Select organizationalUnitDropdown;
 
     @UiField
     HelpBlock organizationalUnitHelpInline;
@@ -99,10 +100,10 @@ public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositor
     Input passwordTextBox;
 
     @UiField
-    BaseModal popup;
+    FormLabel ouLabel;
 
     @UiField
-    SpanElement isOUMandatory;
+    BaseModal popup;
 
     @UiHandler("clone")
     public void onCloneClick( final ClickEvent e ) {
@@ -122,9 +123,7 @@ public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositor
         setBody( uiBinder.createAndBindUi( this ) );
         setTitle( CoreConstants.INSTANCE.CloneRepository() );
 
-        if ( !isOuMandatory ) {
-            isOUMandatory.removeFromParent();
-        }
+        ouLabel.setShowRequiredIndicator( isOuMandatory );
 
         nameTextBox.addKeyPressHandler( new KeyPressHandler() {
             @Override
@@ -144,24 +143,25 @@ public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositor
 
     @Override
     public void addOrganizationalUnitSelectEntry() {
-        organizationalUnitDropdown.addItem( CoreConstants.INSTANCE.SelectEntry() );
+        final Option option = new Option();
+        option.setText( CoreConstants.INSTANCE.SelectEntry() );
+        organizationalUnitDropdown.add( option );
+        organizationalUnitDropdown.refresh();
     }
 
     @Override
     public void addOrganizationalUnit( final String item,
                                        final String value ) {
-        organizationalUnitDropdown.addItem( item,
-                                            value );
+        final Option option = new Option();
+        option.setText( item );
+        option.setValue( value );
+        organizationalUnitDropdown.add( option );
+        organizationalUnitDropdown.refresh();
     }
 
     @Override
-    public int getSelectedOrganizationalUnit() {
-        return organizationalUnitDropdown.getSelectedIndex();
-    }
-
-    @Override
-    public String getOrganizationalUnit( final int index ) {
-        return organizationalUnitDropdown.getValue( index );
+    public String getSelectedOrganizationalUnit() {
+        return organizationalUnitDropdown.getValue();
     }
 
     @Override
@@ -242,6 +242,7 @@ public class CloneRepositoryViewImpl extends BaseModal implements CloneRepositor
     @Override
     public void setOrganizationalUnitEnabled( final boolean enabled ) {
         organizationalUnitDropdown.setEnabled( enabled );
+        organizationalUnitDropdown.refresh();
     }
 
     @Override

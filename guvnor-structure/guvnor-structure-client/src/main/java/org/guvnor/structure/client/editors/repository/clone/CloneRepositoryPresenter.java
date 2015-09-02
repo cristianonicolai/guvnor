@@ -111,7 +111,7 @@ public class CloneRepositoryPresenter implements CloneRepositoryView.Presenter {
                 final String scheme = "git";
                 final String alias = view.getName().trim();
                 repositoryService.call( getCreateRepositoryCallback(),
-                                        getErrorCallback() ).createRepository( availableOrganizationalUnits.get( view.getOrganizationalUnit( view.getSelectedOrganizationalUnit() ) ),
+                                        getErrorCallback() ).createRepository( availableOrganizationalUnits.get( view.getSelectedOrganizationalUnit() ),
                                                                                scheme,
                                                                                alias,
                                                                                getEnv() );
@@ -170,7 +170,7 @@ public class CloneRepositoryPresenter implements CloneRepositoryView.Presenter {
     }
 
     private boolean setOrganizationalUnitGroupType() {
-        if ( isOuMandatory() && !availableOrganizationalUnits.containsKey( view.getOrganizationalUnit( view.getSelectedOrganizationalUnit() ) ) ) {
+        if ( isOuMandatory() && !availableOrganizationalUnits.containsKey( view.getSelectedOrganizationalUnit() ) ) {
             view.setOrganizationalUnitGroupType( ValidationState.ERROR );
             view.showOrganizationalUnitHelpMandatoryMessage();
             return false;

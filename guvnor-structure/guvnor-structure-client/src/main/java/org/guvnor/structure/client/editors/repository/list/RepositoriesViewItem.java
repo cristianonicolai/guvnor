@@ -32,9 +32,10 @@ import org.guvnor.structure.repositories.Repository;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.InputGroupAddon;
-import org.gwtbootstrap3.client.ui.ListBox;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.html.Paragraph;
+import org.gwtbootstrap3.extras.select.client.ui.Option;
+import org.gwtbootstrap3.extras.select.client.ui.Select;
 import org.uberfire.ext.widgets.core.client.resources.i18n.CoreConstants;
 
 public class RepositoriesViewItem extends Composite {
@@ -63,7 +64,7 @@ public class RepositoriesViewItem extends Composite {
     public Paragraph linksPanel;
 
     @UiField
-    public ListBox branchesDropdown;
+    public Select branchesDropdown;
 
     private RemoveRepositoryCmd cmdRemoveRepository;
 
@@ -119,14 +120,16 @@ public class RepositoriesViewItem extends Composite {
         myGitCopyButton.getElement().setId( "view-button-" + uriId );
 
         // populate branches
-        int index = 0;
         for ( String branch : branches ) {
-            branchesDropdown.addItem( branch, branch );
+            final Option option = new Option();
+            option.setText( branch );
+            option.setValue( branch );
+            branchesDropdown.add( option );
             if ( currentBranch.equals( branch ) ) {
-                branchesDropdown.setSelectedIndex( index );
+                branchesDropdown.setValue( option );
             }
-            index++;
         }
+        branchesDropdown.refresh();
 
         glueCopy( myGitCopyButton.getElement() );
     }
@@ -141,7 +144,7 @@ public class RepositoriesViewItem extends Composite {
     @UiHandler("btnChangeBranch")
     public void onClickButtonUpdateRepository( final ClickEvent event ) {
         if ( cmdUpdateRepository != null ) {
-            final String branch = branchesDropdown.getValue( branchesDropdown.getSelectedIndex() );
+            final String branch = branchesDropdown.getValue();
             cmdUpdateRepository.add( "branch", branch );
             cmdUpdateRepository.execute();
         }

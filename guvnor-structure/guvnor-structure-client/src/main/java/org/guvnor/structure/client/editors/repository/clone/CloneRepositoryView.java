@@ -39,9 +39,7 @@ public interface CloneRepositoryView {
     void addOrganizationalUnit( String item,
                                 String value );
 
-    String getOrganizationalUnit( int index );
-
-    int getSelectedOrganizationalUnit();
+    String getSelectedOrganizationalUnit();
 
     boolean isGitUrlEmpty();
 

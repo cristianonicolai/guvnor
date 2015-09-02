@@ -118,7 +118,7 @@ public class ProjectModulesViewImpl extends Composite
     private void addDeleteModuleColumn() {
 
         //TODO add i18n constants.
-        final ButtonCell deleteModuleButton = new ButtonCell( IconType.MINUS, ButtonType.DANGER, ButtonSize.SMALL );
+        final ButtonCell deleteModuleButton = new ButtonCell( IconType.TRASH, ButtonType.DANGER, ButtonSize.SMALL );
         final Column<ProjectModuleRow, String> deleteModuleColumn = new Column<ProjectModuleRow, String>( deleteModuleButton ) {
             @Override
             public String getValue( final ProjectModuleRow moduleRow ) {
