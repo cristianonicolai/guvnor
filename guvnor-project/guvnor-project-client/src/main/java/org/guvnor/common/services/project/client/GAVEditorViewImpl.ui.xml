@@ -29,35 +29,29 @@
     <gwt:HTMLPanel>
         <b:Form type="HORIZONTAL">
             <b:FormGroup ui:field="groupIdGroup">
-                <p:FormLabelHelp for="groupIdTextBox" text="{i18n.GroupID}" addStyleNames="col-md-2" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.GroupIdMoreInfo}"/>
-                <b:Column size="MD_4">
+                <p:FormLabelHelp for="groupIdTextBox" text="{i18n.GroupID}" addStyleNames="col-md-4" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.GroupIdMoreInfo}"/>
+                <b:Column size="MD_8">
                     <b:TextBox b:id="groupIdTextBox" ui:field="groupIdTextBox" placeholder="{i18n.EnterAGroupID}"/>
-                    <b:HelpBlock ui:field="groupIdHelpBlock"/>
-                </b:Column>
-                <b:Column size="MD_6">
                     <b:HelpBlock text="{i18n.GroupIdExample}"/>
+                    <b:HelpBlock ui:field="groupIdHelpBlock"/>
                 </b:Column>
             </b:FormGroup>
 
             <b:FormGroup ui:field="artifactIdGroup">
-                <p:FormLabelHelp for="artifactIdTextBox" text="{i18n.ArtifactID}" addStyleNames="col-md-2" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.ArtifactIDMoreInfo}"/>
-                <b:Column size="MD_4">
+                <p:FormLabelHelp for="artifactIdTextBox" text="{i18n.ArtifactID}" addStyleNames="col-md-4" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.ArtifactIDMoreInfo}"/>
+                <b:Column size="MD_8">
                     <b:TextBox b:id="artifactIdTextBox" ui:field="artifactIdTextBox" placeholder="{i18n.EnterAnArtifactID}"/>
-                    <b:HelpBlock ui:field="artifactIdHelpBlock"/>
-                </b:Column>
-                <b:Column size="MD_6">
                     <b:HelpBlock text="{i18n.ArtifactIDExample}"/>
+                    <b:HelpBlock ui:field="artifactIdHelpBlock"/>
                 </b:Column>
             </b:FormGroup>
 
             <b:FormGroup ui:field="versionGroup">
-                <p:FormLabelHelp for="versionTextBox" text="{i18n.Version}" addStyleNames="col-md-2" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.VersionMoreInfo}"/>
-                <b:Column size="MD_4">
+                <p:FormLabelHelp for="versionTextBox" text="{i18n.Version}" addStyleNames="col-md-4" helpTitle="{i18n.MoreInfo}" helpContent="{i18n.VersionMoreInfo}"/>
+                <b:Column size="MD_8">
                     <b:TextBox b:id="versionTextBox" ui:field="versionTextBox" placeholder="{i18n.EnterAVersion}"/>
-                    <b:HelpBlock ui:field="versionHelpBlock"/>
-                </b:Column>
-                <b:Column size="MD_6">
                     <b:HelpBlock text="{i18n.VersionExample}"/>
+                    <b:HelpBlock ui:field="versionHelpBlock"/>
                 </b:Column>
             </b:FormGroup>
 
